@@ -1,0 +1,127 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.dodecaedro</groupId>
+    <artifactId>TransferService</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>TransferService</name>
+    <url>http://maven.apache.org</url>
+
+    <!-- Shared version number properties -->
+    <properties>
+        <org.springframework.version>3.2.5.RELEASE</org.springframework.version>
+        <aspecjt.version>1.7.2</aspecjt.version>
+        <log4j.version>2.0-beta9</log4j.version>
+        <jdk.version>1.7</jdk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <compilerVersion>${jdk.version}</compilerVersion>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.11</version>
+                <configuration>
+                    <!-- The argLine is needed for Cobertura, and requires a forked test 
+                        process. -->
+                    <argLine>-XX:+UseSplitVerifier</argLine>
+                    <forkMode>once</forkMode>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencies>
+        <!-- own dependencies -->
+        <dependency>
+            <groupId>com.dodecaedro</groupId>
+            <artifactId>TransferServiceModelData</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dodecaedro</groupId>
+            <artifactId>TransferServiceSpringDataDao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- only for TransferServiceStubTest -->
+        <dependency>
+            <groupId>com.dodecaedro</groupId>
+            <artifactId>TransferServiceSpringDataDao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!-- Core utilities used by other modules. Define this if you use Spring 
+            Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <!-- Aspect Oriented Programming (AOP) Framework (depends on spring-core,
+            spring-beans) Define this if you use Spring AOP APIs (org.springframework.aop.*) -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <!-- Support for testing Spring applications with tools such as JUnit and 
+            TestNG This artifact is generally always defined with a 'test' scope for 
+            the integration testing framework and unit testing stubs -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspecjt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspecjt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+    </dependencies>
+</project>
