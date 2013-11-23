@@ -55,14 +55,14 @@
         </dependency>
         <dependency>
             <groupId>com.dodecaedro</groupId>
-            <artifactId>TransferServiceSpringDataDao</artifactId>
+            <artifactId>TransferServiceDaoSpringData</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <!-- only for TransferServiceStubTest -->
         <dependency>
             <groupId>com.dodecaedro</groupId>
-            <artifactId>TransferServiceSpringDataDao</artifactId>
+            <artifactId>TransferServiceDaoSpringData</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>test-jar</type>
             <scope>test</scope>
