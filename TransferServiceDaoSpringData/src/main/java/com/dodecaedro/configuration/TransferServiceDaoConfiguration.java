@@ -37,8 +37,6 @@ public class TransferServiceDaoConfiguration {
   @Bean
   public JpaVendorAdapter jpaVendorAdapter() {
     HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-    jpaVendorAdapter.setGenerateDdl(true);
-    jpaVendorAdapter.setShowSql(false);
     return jpaVendorAdapter;
   }
 

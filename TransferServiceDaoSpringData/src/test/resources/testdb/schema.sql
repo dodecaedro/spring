@@ -24,8 +24,8 @@ FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMER(ID)
 
 create table CREDITCARD (
 ID integer identity primary key,
-ISSUE_DATE date,
-EXPIRATION_DATE date,
+ISSUE_DATE timestamp,
+EXPIRATION_DATE timestamp,
 CUSTOMER_ID integer not null,
 FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMER(ID)
 );
