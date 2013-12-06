@@ -1,17 +1,17 @@
 package com.dodecaedro.aspect;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
 @Aspect
 @Component
 public class TimeLogging {
-  private Logger logger = LogManager.getLogger(TimeLogging.class);
+  private final static Logger logger = LoggerFactory.getLogger(TimeLogging.class);
 
   @Around("com.dodecaedro.aspect.SystemPointCuts.serviceMethods()")
   public Object logTime(ProceedingJoinPoint point) throws Throwable {
