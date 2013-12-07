@@ -164,13 +164,13 @@
             <version>1.2.1</version>
             <scope>runtime</scope>
         </dependency>
+        -->
         <dependency>
             <groupId>com.jolbox</groupId>
             <artifactId>bonecp</artifactId>
             <version>0.8.0.RELEASE</version>
             <scope>runtime</scope>
-        </dependency>        
-        -->
+        </dependency>                
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
