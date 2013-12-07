@@ -1,7 +1,10 @@
+-- Schema: transfer
+
 DROP SCHEMA IF EXISTS tansfer;
 
 CREATE SCHEMA transfer
-       AUTHORIZATION transferuser;   
+       AUTHORIZATION transferuser;
+
 
 
 -- Sequence: transfer."S_ACCOUNT"
@@ -17,6 +20,7 @@ CREATE SEQUENCE transfer."S_ACCOUNT"
   CYCLE;
 ALTER TABLE transfer."S_ACCOUNT"
   OWNER TO transferuser;
+
 
 -- Sequence: transfer."S_CREDITCARD"
 
@@ -41,7 +45,7 @@ CREATE SEQUENCE transfer."S_CUSTOMER"
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
-  START 1
+  START 5
   CACHE 1
   CYCLE;
 ALTER TABLE transfer."S_CUSTOMER"
@@ -69,7 +73,6 @@ ALTER TABLE transfer."CUSTOMER"
   OWNER TO transferuser;
 
 
-
 -- Table: transfer."ACCOUNT"
 
 DROP TABLE IF EXISTS transfer."ACCOUNT";
@@ -91,16 +94,15 @@ ALTER TABLE transfer."ACCOUNT"
   OWNER TO transferuser;
 
 
-
 -- Table: transfer."CREDITCARD"
 
--- DROP TABLE transfer."CREDITCARD";
+DROP TABLE IF EXISTS transfer."CREDITCARD";
 
 CREATE TABLE transfer."CREDITCARD"
 (
   "ID" bigint NOT NULL DEFAULT nextval('transfer."S_CREDITCARD"'::regclass),
   "ISSUE_DATE" timestamp without time zone NOT NULL,
-  "EXPIRATION_DATE" time without time zone NOT NULL,
+  "EXPIRATION_DATE" timestamp without time zone NOT NULL,
   "CUSTOMER_ID" bigint,
   CONSTRAINT "CREDITCARD_PKEY" PRIMARY KEY ("ID"),
   CONSTRAINT "CREDITCARD_FKEY" FOREIGN KEY ("ID")

@@ -1,7 +1,7 @@
-insert into transfer."CUSTOMER" ("FIRSTNAME", "LASTNAME", "PHONENUMBER", "ADDRESS") values ('José', 'Mourinho', '555-543', 'Concha Espina, 1');
-insert into transfer."CUSTOMER" ("FIRSTNAME", "LASTNAME", "PHONENUMBER", "ADDRESS") values ('Cristiano', 'Ronaldo', '555-544', 'Concha Espina, 2');
-insert into transfer."CUSTOMER" ("FIRSTNAME", "LASTNAME", "PHONENUMBER", "ADDRESS") values ('Sergio', 'Ramos', '555-545', 'Concha Espina, 3');
-insert into transfer."CUSTOMER" ("FIRSTNAME", "LASTNAME", "PHONENUMBER", "ADDRESS") values ('Diego', 'Lopez', '555-547', 'Concha Espina, 4');
+insert into transfer."CUSTOMER" ("ID", "FIRSTNAME", "LASTNAME", "PHONENUMBER", "ADDRESS") values ('1', 'José', 'Mourinho', '555-543', 'Concha Espina, 1');
+insert into transfer."CUSTOMER" ("ID", "FIRSTNAME", "LASTNAME", "PHONENUMBER", "ADDRESS") values ('2', 'Cristiano', 'Ronaldo', '555-544', 'Concha Espina, 2');
+insert into transfer."CUSTOMER" ("ID", "FIRSTNAME", "LASTNAME", "PHONENUMBER", "ADDRESS") values ('3', 'Sergio', 'Ramos', '555-545', 'Concha Espina, 3');
+insert into transfer."CUSTOMER" ("ID", "FIRSTNAME", "LASTNAME", "PHONENUMBER", "ADDRESS") values ('4', 'Diego', 'Lopez', '555-547', 'Concha Espina, 4');
 
 insert into transfer."ACCOUNT" ("BALANCE", "CUSTOMER_ID") values ('300','1');
 insert into transfer."ACCOUNT" ("BALANCE", "CUSTOMER_ID") values ('75','2');
