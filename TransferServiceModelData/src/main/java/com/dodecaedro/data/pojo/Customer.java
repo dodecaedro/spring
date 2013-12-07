@@ -3,13 +3,7 @@ package com.dodecaedro.data.pojo;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="CUSTOMER")
@@ -17,8 +11,8 @@ public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
-	@Column(name="ID")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name="ID")
 	private Integer customerId;
 	@Column(name="FIRSTNAME")
 	private String firstName;

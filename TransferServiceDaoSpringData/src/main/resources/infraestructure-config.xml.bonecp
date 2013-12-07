@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:util="http://www.springframework.org/schema/util" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+	<!-- Here would be production database configuration -->
+	<!-- This xml can stay inside the jar, and database.properties can be put outside-->
+
+<!-- BoneCP configuration -->
+<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+   <property name="driverClass" value="org.postgresql.Driver" />
+   <property name="jdbcUrl" value="jdbc:postgresql://develvm:5432/transferdb?searchpath=transfer" />
+   <property name="username" value="transferuser"/>
+   <property name="password" value="transferpassword"/>
+   <property name="idleConnectionTestPeriod" value="60"/>
+   <property name="idleMaxAge" value="240"/>
+   <property name="maxConnectionsPerPartition" value="30"/>
+   <property name="minConnectionsPerPartition" value="10"/>
+   <property name="partitionCount" value="3"/>
+   <property name="acquireIncrement" value="5"/>
+   <property name="statementsCacheSize" value="100"/>
+   <property name="releaseHelperThreads" value="3"/>
+</bean>	
+
+ 
+    <util:properties id="props" location="classpath:database.properties"/>  	
+</beans>

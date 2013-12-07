@@ -2,13 +2,7 @@ package com.dodecaedro.data.pojo;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="ACCOUNT")
@@ -16,13 +10,13 @@ public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
-	@Column(name="ID")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name="ID")
 	private Integer accountId;
-	
+
 	@Column(name="BALANCE")
 	private int balance;
-	
+
 	@OneToOne
 	@JoinColumn(name="CUSTOMER_ID", nullable=false)
 	private Customer customer;

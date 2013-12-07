@@ -7,110 +7,110 @@ CREATE SCHEMA transfer
 
 
 
--- Sequence: transfer."S_ACCOUNT"
+-- Sequence: transfer."s_account"
 
-DROP SEQUENCE IF EXISTS transfer."S_ACCOUNT";
+DROP SEQUENCE IF EXISTS transfer.s_account;
 
-CREATE SEQUENCE transfer."S_ACCOUNT"
+CREATE SEQUENCE transfer.s_account
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1
   CYCLE;
-ALTER TABLE transfer."S_ACCOUNT"
+ALTER TABLE transfer.s_account
   OWNER TO transferuser;
 
 
--- Sequence: transfer."S_CREDITCARD"
+-- Sequence: transfer."s_creditcard"
 
-DROP SEQUENCE IF EXISTS transfer."S_CREDITCARD";
+DROP SEQUENCE IF EXISTS transfer.s_creditcard;
 
-CREATE SEQUENCE transfer."S_CREDITCARD"
+CREATE SEQUENCE transfer.s_creditcard
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1
   CYCLE;
-ALTER TABLE transfer."S_CREDITCARD"
+ALTER TABLE transfer.s_creditcard
   OWNER TO transferuser;
 
 
--- Sequence: transfer."S_CUSTOMER"
+-- Sequence: transfer."s_customer"
 
-DROP SEQUENCE IF EXISTS transfer."S_CUSTOMER";
+DROP SEQUENCE IF EXISTS transfer.s_customer;
 
-CREATE SEQUENCE transfer."S_CUSTOMER"
+CREATE SEQUENCE transfer.s_customer
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
   START 5
   CACHE 1
   CYCLE;
-ALTER TABLE transfer."S_CUSTOMER"
+ALTER TABLE transfer.s_customer
   OWNER TO transferuser;
 
 
 
--- Table: transfer."CUSTOMER"
+-- Table: transfer."customer"
 
-DROP TABLE IF EXISTS transfer."CUSTOMER";
+DROP TABLE IF EXISTS transfer.customer;
 
-CREATE TABLE transfer."CUSTOMER"
+CREATE TABLE transfer.customer
 (
-  "ID" bigint NOT NULL DEFAULT nextval('transfer."S_CUSTOMER"'::regclass),
-  "FIRSTNAME" character varying(100) NOT NULL,
-  "LASTNAME" character varying(100) NOT NULL,
-  "PHONENUMBER" character varying(100),
-  "ADDRESS" character varying(100) NOT NULL,
-  CONSTRAINT "CUSTOMER_PKEY" PRIMARY KEY ("ID")
+  "id" bigint NOT NULL DEFAULT nextval('transfer.s_customer'::regclass),
+  "firstname" character varying(100) NOT NULL,
+  "lastname" character varying(100) NOT NULL,
+  "phonenumber" character varying(100),
+  "address" character varying(100) NOT NULL,
+  CONSTRAINT "customer_PKEY" PRIMARY KEY ("id")
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE transfer."CUSTOMER"
+ALTER TABLE transfer.customer
   OWNER TO transferuser;
 
 
--- Table: transfer."ACCOUNT"
+-- Table: transfer."account"
 
-DROP TABLE IF EXISTS transfer."ACCOUNT";
+DROP TABLE IF EXISTS transfer.account;
 
-CREATE TABLE transfer."ACCOUNT"
+CREATE TABLE transfer.account
 (
-  "ID" bigint NOT NULL DEFAULT nextval('transfer."S_ACCOUNT"'::regclass),
-  "BALANCE" bigint DEFAULT 0,
-  "CUSTOMER_ID" bigint,
-  CONSTRAINT "ACCOUNT_PKEY" PRIMARY KEY ("ID"),
-  CONSTRAINT "ACCOUNT_FKEY" FOREIGN KEY ("ID")
-      REFERENCES transfer."CUSTOMER" ("ID") MATCH SIMPLE
+  "id" bigint NOT NULL DEFAULT nextval('transfer.s_account'::regclass),
+  "balance" bigint DEFAULT 0,
+  "customer_id" bigint,
+  CONSTRAINT "account_PKEY" PRIMARY KEY ("id"),
+  CONSTRAINT "account_FKEY" FOREIGN KEY ("customer_id")
+      REFERENCES transfer.customer ("id") MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE transfer."ACCOUNT"
+ALTER TABLE transfer.account
   OWNER TO transferuser;
 
 
--- Table: transfer."CREDITCARD"
+-- Table: transfer."creditcard"
 
-DROP TABLE IF EXISTS transfer."CREDITCARD";
+DROP TABLE IF EXISTS transfer.creditcard;
 
-CREATE TABLE transfer."CREDITCARD"
+CREATE TABLE transfer.creditcard
 (
-  "ID" bigint NOT NULL DEFAULT nextval('transfer."S_CREDITCARD"'::regclass),
-  "ISSUE_DATE" timestamp without time zone NOT NULL,
-  "EXPIRATION_DATE" timestamp without time zone NOT NULL,
-  "CUSTOMER_ID" bigint,
-  CONSTRAINT "CREDITCARD_PKEY" PRIMARY KEY ("ID"),
-  CONSTRAINT "CREDITCARD_FKEY" FOREIGN KEY ("ID")
-      REFERENCES transfer."CUSTOMER" ("ID") MATCH SIMPLE
+  "id" bigint NOT NULL DEFAULT nextval('transfer.s_creditcard'::regclass),
+  "issue_date" timestamp without time zone NOT NULL,
+  "expiration_date" timestamp without time zone NOT NULL,
+  "customer_id" bigint,
+  CONSTRAINT "creditcard_PKEY" PRIMARY KEY ("id"),
+  CONSTRAINT "creditcard_FKEY" FOREIGN KEY ("customer_id")
+      REFERENCES transfer.customer ("id") MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE transfer."CREDITCARD"
+ALTER TABLE transfer.creditcard
   OWNER TO transferuser;

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:util="http://www.springframework.org/schema/util" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+	<!-- Here would be production database configuration -->
+	<!-- This xml can stay inside the jar, and database.properties can be put outside-->
+
+    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">  
+      <property name="maximumPoolSize" value="10" />  
+      <property name="minimumPoolSize" value="2" />  
+      <property name="dataSourceClassName"   
+                value="org.postgresql.Driver" />  
+      <property name="dataSourceProperties" ref="props" />  
+      <property name="poolName" value="springHikariCP" />  
+    </bean>  
+  
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">  
+          <constructor-arg ref="hikariConfig" />  
+    </bean>  
+  
+    <util:properties id="props" location="classpath:database.properties"/>  	
+</beans>
