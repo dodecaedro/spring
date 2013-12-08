@@ -7,7 +7,6 @@ import org.springframework.dao.support.PersistenceExceptionTranslator;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate4.HibernateExceptionTranslator;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -30,14 +29,8 @@ public class TransferServiceDaoConfiguration {
     LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
     entityManagerFactoryBean.setDataSource(this.dataSource);
     entityManagerFactoryBean.setPackagesToScan("com.dodecaedro.transferservice.data.pojo");
-    entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter());
+    entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
     return entityManagerFactoryBean;
-  }
-
-  @Bean
-  public JpaVendorAdapter jpaVendorAdapter() {
-    HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-    return jpaVendorAdapter;
   }
 
   @Bean

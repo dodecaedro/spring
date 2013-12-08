@@ -1,10 +1,14 @@
 package com.dodecaedro.transferservice.data.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
 
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property = "customerId")
 @Entity
 @Table(name="CUSTOMER")
 public class Customer implements Serializable {

@@ -21,8 +21,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
           /WEB-INF/mvc-dispatcher-servlet.xml
-          classpath:application-context.xml
-          classpath:test-infraestructure-config.xml
+          classpath:infraestructure-config.xml
     </param-value>
 	</context-param>
 

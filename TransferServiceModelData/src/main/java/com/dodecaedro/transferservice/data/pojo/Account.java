@@ -1,9 +1,13 @@
 package com.dodecaedro.transferservice.data.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.io.Serializable;
 
 import javax.persistence.*;
 
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property = "accountId")
 @Entity
 @Table(name="ACCOUNT")
 public class Account implements Serializable {
@@ -59,5 +63,5 @@ public class Account implements Serializable {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}	
+	}
 }
