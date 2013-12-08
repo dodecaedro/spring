@@ -3,10 +3,9 @@ package com.dodecaedro.transferservice.data.pojo;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
-
-import javax.persistence.*;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property = "customerId")
 @Entity
@@ -82,5 +81,23 @@ public class Customer implements Serializable {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+
+  @Override
+  public boolean equals(Object anotherObject) {
+    if (!(anotherObject instanceof Customer)) {
+      return false;
+    }
+    Customer anotherCustomer = (Customer)anotherObject;
+    return this == anotherCustomer || this.customerId.equals(anotherCustomer.getCustomerId());
+  }
+
+  @Override
+  public int hashCode() {
+    if (this.customerId == null) {
+      return 0;
+    }
+
+    return 17 * (this.customerId ^ (this.customerId >>> 16));
+  }
 
 }

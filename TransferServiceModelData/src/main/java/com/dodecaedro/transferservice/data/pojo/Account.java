@@ -3,9 +3,8 @@ package com.dodecaedro.transferservice.data.pojo;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import java.io.Serializable;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property = "accountId")
 @Entity
@@ -19,7 +18,7 @@ public class Account implements Serializable {
 	private Integer accountId;
 
 	@Column(name="BALANCE")
-	private int balance;
+	private long balance;
 
 	@OneToOne
 	@JoinColumn(name="CUSTOMER_ID", nullable=false)
@@ -37,11 +36,11 @@ public class Account implements Serializable {
 	public Account() {
 	}
 
-	public void debit(int amount) {
+	public void debit(long amount) {
 		this.balance -= amount;
 	}
 
-	public void credit(int amount) {
+	public void credit(long amount) {
 		this.balance += amount;
 	}
 
@@ -53,7 +52,7 @@ public class Account implements Serializable {
 		this.accountId = accountId;
 	}
 
-	public int getBalance() {
+	public long getBalance() {
 		return balance;
 	}
 
@@ -64,4 +63,22 @@ public class Account implements Serializable {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
+  @Override
+  public boolean equals(Object anotherObject) {
+    if (!(anotherObject instanceof Account)) {
+      return false;
+    }
+    Account anotherAccount = (Account)anotherObject;
+    return this == anotherAccount || this.accountId.equals(anotherAccount.getAccountId());
+  }
+
+  @Override
+  public int hashCode() {
+    if (this.accountId == null) {
+      return 0;
+    }
+
+    return 17 * (this.accountId ^ (this.accountId >>> 16));
+  }
 }

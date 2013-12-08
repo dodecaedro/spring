@@ -3,9 +3,8 @@ package com.dodecaedro.transferservice.data.pojo;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import java.util.Date;
-
 import javax.persistence.*;
+import java.util.Date;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property = "creditCardId")
 @Entity
@@ -57,6 +56,22 @@ public class CreditCard {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
-	
+
+  @Override
+  public boolean equals(Object anotherObject) {
+    if (!(anotherObject instanceof CreditCard)) {
+      return false;
+    }
+    CreditCard anotherCreditCard = (CreditCard)anotherObject;
+    return this == anotherCreditCard || this.creditCardId.equals(anotherCreditCard.getCreditCardId());
+  }
+
+  @Override
+  public int hashCode() {
+    if (this.creditCardId == null) {
+      return 0;
+    }
+
+    return 17 * (this.creditCardId ^ (this.creditCardId >>> 16));
+  }
 }
