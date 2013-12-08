@@ -23,10 +23,17 @@
                 <version>2.1</version>
                 <configuration>
                     <url>http://develvm:8080/manager/text</url>
-                    <path>/TransferServiceRest</path>
+                    <path>/${project.build.finalName}</path>
                     <username>tomcat</username>
                     <password>password</password>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-simple</artifactId>
+                        <version>1.7.5</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
