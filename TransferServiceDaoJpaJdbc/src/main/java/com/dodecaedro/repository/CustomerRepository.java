@@ -1,6 +1,6 @@
-package com.dodecaedro.repository;
+package com.dodecaedro.transferservice.repository;
 
-import com.dodecaedro.data.pojo.Customer;
+import com.dodecaedro.transferservice.data.pojo.Customer;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional

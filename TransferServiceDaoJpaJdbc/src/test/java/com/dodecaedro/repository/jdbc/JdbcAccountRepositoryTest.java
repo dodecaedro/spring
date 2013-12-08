@@ -1,7 +1,7 @@
-package com.dodecaedro.repository.jdbc;
+package com.dodecaedro.transferservice.repository.jdbc;
 
-import com.dodecaedro.data.pojo.Account;
-import com.dodecaedro.repository.AccountRepository;
+import com.dodecaedro.transferservice.data.pojo.Account;
+import com.dodecaedro.transferservice.repository.AccountRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Qualifier;

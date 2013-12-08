@@ -1,7 +1,7 @@
-package com.dodecaedro.repository.jdbc;
+package com.dodecaedro.transferservice.repository.jdbc;
 
-import com.dodecaedro.data.pojo.CreditCard;
-import com.dodecaedro.repository.CreditCardRepository;
+import com.dodecaedro.transferservice.data.pojo.CreditCard;
+import com.dodecaedro.transferservice.repository.CreditCardRepository;
 
 /**
  * User: dodecaedro

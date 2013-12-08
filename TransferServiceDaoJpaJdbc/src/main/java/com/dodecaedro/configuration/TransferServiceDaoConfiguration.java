@@ -1,4 +1,4 @@
-package com.dodecaedro.configuration;
+package com.dodecaedro.transferservice.configuration;
 
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.annotation.Bean;
@@ -31,7 +31,7 @@ public class TransferServiceDaoConfiguration {
   public FactoryBean<EntityManagerFactory> entityManagerFactory() {
     LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
     entityManagerFactoryBean.setDataSource(this.dataSource);
-    entityManagerFactoryBean.setPackagesToScan("com.dodecaedro.data.pojo");
+    entityManagerFactoryBean.setPackagesToScan("com.dodecaedro.transferservice.data.pojo");
     entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter());
     return entityManagerFactoryBean;
   }

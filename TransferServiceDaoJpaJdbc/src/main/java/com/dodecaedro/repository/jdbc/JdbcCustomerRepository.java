@@ -1,7 +1,7 @@
-package com.dodecaedro.repository.jdbc;
+package com.dodecaedro.transferservice.repository.jdbc;
 
-import com.dodecaedro.data.pojo.Customer;
-import com.dodecaedro.repository.CustomerRepository;
+import com.dodecaedro.transferservice.data.pojo.Customer;
+import com.dodecaedro.transferservice.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

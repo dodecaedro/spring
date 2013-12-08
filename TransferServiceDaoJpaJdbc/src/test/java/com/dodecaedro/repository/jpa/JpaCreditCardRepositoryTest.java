@@ -1,7 +1,7 @@
-package com.dodecaedro.repository.jpa;
+package com.dodecaedro.transferservice.repository.jpa;
 
-import com.dodecaedro.data.pojo.CreditCard;
-import com.dodecaedro.repository.CreditCardRepository;
+import com.dodecaedro.transferservice.data.pojo.CreditCard;
+import com.dodecaedro.transferservice.repository.CreditCardRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

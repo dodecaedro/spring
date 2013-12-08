@@ -1,6 +1,6 @@
-package com.dodecaedro.repository;
+package com.dodecaedro.transferservice.repository;
 
-import com.dodecaedro.data.pojo.CreditCard;
+import com.dodecaedro.transferservice.data.pojo.CreditCard;
 
 public interface CreditCardRepository {
   CreditCard findByCreditCardId(Integer creditCardId);

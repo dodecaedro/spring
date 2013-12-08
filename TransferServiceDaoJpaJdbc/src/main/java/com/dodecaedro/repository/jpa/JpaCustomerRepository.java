@@ -1,7 +1,7 @@
-package com.dodecaedro.repository.jpa;
+package com.dodecaedro.transferservice.repository.jpa;
 
-import com.dodecaedro.data.pojo.Customer;
-import com.dodecaedro.repository.CustomerRepository;
+import com.dodecaedro.transferservice.data.pojo.Customer;
+import com.dodecaedro.transferservice.repository.CustomerRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

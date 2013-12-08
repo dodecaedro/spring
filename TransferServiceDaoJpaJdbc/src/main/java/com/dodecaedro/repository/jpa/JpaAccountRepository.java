@@ -1,7 +1,7 @@
-package com.dodecaedro.repository.jpa;
+package com.dodecaedro.transferservice.repository.jpa;
 
-import com.dodecaedro.data.pojo.Account;
-import com.dodecaedro.repository.AccountRepository;
+import com.dodecaedro.transferservice.data.pojo.Account;
+import com.dodecaedro.transferservice.repository.AccountRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
