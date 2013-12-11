@@ -22,7 +22,7 @@ public class TimeLogging {
     } finally {
       sw.stop();
       logger.debug("Finished method: " + point.getSignature().getName()
-          + ". Execution took: " + sw.getTotalTimeMillis() + "ms");
+              + ". Execution took: " + sw.getTotalTimeMillis() + "ms");
     }
 
   }

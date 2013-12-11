@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertNotNull;
 @ContextConfiguration(locations = {"/application-context.xml", "/test-infraestructure-config.xml"})
 public class JpaCreditCardRepositoryTest {
 
-  @Resource
+  @Inject
   private CreditCardRepository creditCardRepository;
 
   @Test

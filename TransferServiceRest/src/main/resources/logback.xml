@@ -7,8 +7,8 @@
     </appender>
 
     <root>
-        <level value="WARN" />
-        <appender-ref ref="CONSOLE" />
+        <level value="WARN"/>
+        <appender-ref ref="CONSOLE"/>
     </root>
 </configuration>
 

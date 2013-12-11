@@ -6,7 +6,8 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityNotFoundException;
 
 import static org.junit.Assert.*;
@@ -15,7 +16,8 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = {"/application-context.xml", "/test-infraestructure-config.xml"})
 public class JpaAccountRepositoryTest {
 
-  @Resource
+  @Inject
+  @Named("accountRepository")
   private AccountRepository accountRepository;
 
   @Test

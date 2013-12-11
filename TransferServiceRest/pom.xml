@@ -89,5 +89,10 @@
             <artifactId>jackson-jaxrs-xml-provider</artifactId>
             <version>${fasterxml.version}</version>
         </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
     </dependencies>
 </project>

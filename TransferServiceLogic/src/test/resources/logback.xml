@@ -7,16 +7,16 @@
     </appender>
 
     <logger name="org.springframework">
-        <level value="INFO" />
+        <level value="INFO"/>
     </logger>
 
     <logger name="org.hibernate">
-        <level value="INFO" />
+        <level value="INFO"/>
     </logger>
 
     <root>
-        <level value="WARN" />
-        <appender-ref ref="CONSOLE" />
+        <level value="WARN"/>
+        <appender-ref ref="CONSOLE"/>
     </root>
 </configuration>
 

@@ -9,15 +9,17 @@ import com.dodecaedro.transferservice.repository.CreditCardRepository;
 import com.dodecaedro.transferservice.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 @Service
 public class TransferServiceImpl implements TransferService {
-  @Resource
+  @Inject
+  @Named("accountRepository")
   private AccountRepository accountRepository;
-  @Resource
+  @Inject
   private CustomerRepository customerRepository;
-  @Resource
+  @Inject
   private CreditCardRepository creditCardRepository;
 
   // used in tests to manually inject stub

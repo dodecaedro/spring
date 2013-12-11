@@ -12,7 +12,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 @EnableJpaRepositories("com.dodecaedro.transferservice.repository")
 @EnableTransactionManagement
 public class TransferServiceDaoConfiguration {
-  @Resource
+  @Inject
   private DataSource dataSource;
 
   // these 3 beans are needed only for jpa

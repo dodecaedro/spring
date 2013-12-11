@@ -29,15 +29,15 @@ public class TransferServiceStubTest {
     Account account2Origin = new Account(accountRepository.findByAccountId(2));
 
     transferService.transferBetweenAccounts(account1Origin.getAccountId(),
-        account2Origin.getAccountId(), 75);
+            account2Origin.getAccountId(), 75);
 
     Account account1Updated = accountRepository.findByAccountId(1);
     Account account2Updated = accountRepository.findByAccountId(2);
 
     assertEquals(account1Origin.getBalance() - 75,
-        account1Updated.getBalance());
+            account1Updated.getBalance());
     assertEquals(account2Origin.getBalance() + 75,
-        account2Updated.getBalance());
+            account2Updated.getBalance());
   }
 
 }

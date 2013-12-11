@@ -8,7 +8,8 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityNotFoundException;
 
 import static org.junit.Assert.assertEquals;
@@ -17,10 +18,11 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/application-context.xml", "/test-infraestructure-config.xml"})
 public class TransferServiceIntegrationTest {
-  @Resource
+  @Inject
   private TransferService transferService;
   // primary is jpa account repository
-  @Resource
+  @Inject
+  @Named("accountRepository")
   private AccountRepository accountRepository;
 
   @Test
@@ -29,15 +31,15 @@ public class TransferServiceIntegrationTest {
     Account account2Origin = new Account(accountRepository.findByAccountId(2));
 
     transferService.transferBetweenAccounts(account1Origin.getAccountId(),
-        account2Origin.getAccountId(), 75);
+            account2Origin.getAccountId(), 75);
 
     Account account1Updated = accountRepository.findByAccountId(1);
     Account account2Updated = accountRepository.findByAccountId(2);
 
     assertEquals(account1Origin.getBalance() - 75,
-        account1Updated.getBalance());
+            account1Updated.getBalance());
     assertEquals(account2Origin.getBalance() + 75,
-        account2Updated.getBalance());
+            account2Updated.getBalance());
   }
 
   @Test
