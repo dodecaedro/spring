@@ -11,18 +11,12 @@
     <!-- This xml can stay inside the jar, and database.properties can be put outside-->
     <context:property-placeholder location="classpath:database.properties"/>
 
-    <!-- BoneCP configuration -->
-    <bean class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close" id="dataSource">
-        <property name="driverClass" value="${database.driverClassName}"/>
-        <property name="jdbcUrl" value="${database.url}"/>
+    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
+        <property name="driverClassName" value="${database.driverClassName}" />
+        <property name="url" value="${database.url}"/>
         <property name="username" value="${database.username}"/>
         <property name="password" value="${database.password}"/>
-        <property name="idleConnectionTestPeriodInMinutes" value="${database.idleConnectionTestPeriodInMinutes}"/>
-        <property name="idleMaxAgeInMinutes" value="${database.idleMaxAgeInMinutes}"/>
-        <property name="maxConnectionsPerPartition" value="${database.maxConnectionsPerPartition}"/>
-        <property name="minConnectionsPerPartition" value="${database.minConnectionsPerPartition}"/>
-        <property name="partitionCount" value="${database.partitionCount}"/>
-        <property name="acquireIncrement" value="${database.acquireIncrement}"/>
-        <property name="statementsCacheSize" value="${database.statementsCacheSize}"/>
+        <property name="initialSize" value="5" />
+        <property name="maxActive" value="10" />
     </bean>
 </beans>
