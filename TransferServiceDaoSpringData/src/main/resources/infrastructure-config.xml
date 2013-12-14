@@ -10,11 +10,5 @@
     <!-- Here would be production database configuration -->
     <!-- This xml can stay inside the jar, and database.properties can be put outside-->
     <context:property-override location="classpath:database.properties"/>
-
-    <!-- PoolProperties contains properties that spring will override using the .properties file -->
-    <bean id="database" class="org.apache.tomcat.jdbc.pool.PoolProperties"/>
-
-    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
-        <constructor-arg ref="database"/>
-    </bean>
+    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"/>
 </beans>
