@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/application-context.xml", "/test-infraestructure-config.xml"})
+@ContextConfiguration(locations = {"/application-context.xml", "/test-infrastructure-config.xml"})
 public class JpaCreditCardRepositoryTest {
 
   @Resource

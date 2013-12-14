@@ -13,7 +13,7 @@ import javax.persistence.EntityNotFoundException;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/application-context.xml", "/test-infraestructure-config.xml"})
+@ContextConfiguration(locations = {"/application-context.xml", "/test-infrastructure-config.xml"})
 public class JpaAccountRepositoryTest {
 
   @Inject
