@@ -40,6 +40,10 @@
                 <version>2.4</version>
                 <configuration>
                     <archiveClasses>true</archiveClasses>
+                    <nonFilteredFileExtensions>
+                        <!-- default value contains jpg,jpeg,gif,bmp,png -->
+                        <nonFilteredFileExtension>xml</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
                 </configuration>
             </plugin>
         </plugins>
