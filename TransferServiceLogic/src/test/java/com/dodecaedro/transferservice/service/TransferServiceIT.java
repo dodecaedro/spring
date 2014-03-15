@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/application-context.xml", "/test-infrastructure-config.xml"})
-public class TransferServiceIntegrationTest {
+public class TransferServiceIT {
   @Inject
   private TransferService transferService;
   // primary is jpa account repository

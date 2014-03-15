@@ -2,8 +2,10 @@ package com.dodecaedro.transferservice.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.jpa.support.ClasspathScanningPersistenceUnitPostProcessor;
 import org.springframework.orm.jpa.AbstractEntityManagerFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -29,6 +31,7 @@ public class TransferServiceDaoConfiguration {
     entityManagerFactoryBean.setDataSource(this.dataSource);
     entityManagerFactoryBean.setPackagesToScan("com.dodecaedro.transferservice.data.pojo");
     entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+    entityManagerFactoryBean.setPersistenceUnitPostProcessors(postProcessor());
     return entityManagerFactoryBean;
   }
 
@@ -40,6 +43,14 @@ public class TransferServiceDaoConfiguration {
   @Bean
   public PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslator() {
     return new PersistenceExceptionTranslationPostProcessor();
+  }
+
+  private ClasspathScanningPersistenceUnitPostProcessor postProcessor() {
+    ClasspathScanningPersistenceUnitPostProcessor processor =
+            new ClasspathScanningPersistenceUnitPostProcessor("com.dodecaedro.transferservice.jpql");
+    processor.setResourceLoader(new DefaultResourceLoader());
+    processor.setMappingFileNamePattern("**/*-orm.xml");
+    return processor;
   }
 
 }
