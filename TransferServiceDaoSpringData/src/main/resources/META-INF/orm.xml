@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+                 http://java.sun.com/xml/ns/persistence/orm_2_1.xsd"
+                 version="2.0">
+
+    <named-query name="CreditCard.findCurrentCreditCardFromCustomer">
+        <query>
+            SELECT c
+            FROM CreditCard c
+            WHERE c.expirationDate > CURRENT_DATE
+            AND c.customer.customerId = ?1
+            ORDER BY c.issueDate DESC
+        </query>
+    </named-query>
+
+</entity-mappings>

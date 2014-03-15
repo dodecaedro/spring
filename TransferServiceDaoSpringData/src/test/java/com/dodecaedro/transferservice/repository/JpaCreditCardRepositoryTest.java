@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
+import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -21,5 +22,11 @@ public class JpaCreditCardRepositoryTest {
   public void findByCurrentCardTest() {
     CreditCard creditCard = creditCardRepository.findByCreditCardId(1);
     assertNotNull(creditCard);
+  }
+
+  @Test
+  public void findActiveCreditCardsTest() {
+    List<CreditCard> creditCards = creditCardRepository.findActiveCreditCardsFromCustomer(4);
+    assertNotNull(creditCards);
   }
 }
