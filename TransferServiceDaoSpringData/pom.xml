@@ -101,15 +101,22 @@
             <version>${hsqldb.version}</version>
             <scope>test</scope>
         </dependency>
+        <!--
+		<dependency>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp</artifactId>
+			<version>0.6.5</version>
+		</dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
             <version>7.0.52</version>
         </dependency>
+        -->
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
-            <version>1.3.2</version>
+            <version>1.3.3</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
