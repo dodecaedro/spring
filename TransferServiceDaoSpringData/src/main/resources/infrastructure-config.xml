@@ -9,13 +9,12 @@
 
     <!-- Here would be production database configuration -->
     <!-- This xml can stay inside the jar, and database.properties can be put outside-->
-
-    <util:properties id="datasourceProperties" location="classpath:database.properties"/>
-
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="shutdown">
         <constructor-arg>
             <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-                <constructor-arg ref="datasourceProperties" />
+                <constructor-arg>
+                    <util:properties location="classpath:database.properties"/>
+                </constructor-arg>
             </bean>
         </constructor-arg>
     </bean>
