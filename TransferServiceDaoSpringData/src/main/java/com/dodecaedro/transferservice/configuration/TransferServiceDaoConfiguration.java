@@ -32,6 +32,7 @@ public class TransferServiceDaoConfiguration {
     entityManagerFactoryBean.setPackagesToScan("com.dodecaedro.transferservice.data.pojo");
     entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
     entityManagerFactoryBean.setPersistenceUnitPostProcessors(postProcessor());
+    entityManagerFactoryBean.setPersistenceUnitName("TransferServicePU");
     return entityManagerFactoryBean;
   }
 

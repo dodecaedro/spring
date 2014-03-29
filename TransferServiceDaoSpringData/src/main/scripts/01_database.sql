@@ -1,0 +1,6 @@
+DROP DATABASE IF EXISTS transferdb;
+
+CREATE DATABASE transferdb
+  WITH ENCODING='UTF8'
+       OWNER=transferuser
+       CONNECTION LIMIT=-1;
