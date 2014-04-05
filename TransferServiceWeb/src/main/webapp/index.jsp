@@ -4,6 +4,6 @@
   </head>
   <body>
     <h3>Welcome</h3>
-    <a href="customer/all">List of customers</a>
+    <a href="customers">List of customers</a>
   </body>
 </html>

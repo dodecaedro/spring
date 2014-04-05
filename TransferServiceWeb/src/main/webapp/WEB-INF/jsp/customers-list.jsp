@@ -12,15 +12,14 @@
   <div>
     <c:if test="${empty customers}">No customers found</c:if>
     <c:if test="${not empty customers}">
-      <ul>
-        <c:forEach var="customer" items="${customers}">
-          <ul>
-            <li>
-              <c:out value="${customer.firstName}"/> <c:out value="${customer.lastName}"/>
-            </li>
-          </ul>
-        </c:forEach>
-      </ul>
+      <c:forEach var="customer" items="${customers}">
+        <ul>
+          <li>
+            <c:out value="${customer.firstName}"/>
+            <c:out value="${customer.lastName}"/>
+          </li>
+        </ul>
+      </c:forEach>
     </c:if>
   </div>
 </body>
