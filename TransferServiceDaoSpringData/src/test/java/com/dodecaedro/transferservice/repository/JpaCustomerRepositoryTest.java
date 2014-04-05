@@ -8,8 +8,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/application-context.xml", "/test-infrastructure-config.xml"})
@@ -36,5 +39,11 @@ public class JpaCustomerRepositoryTest {
     Customer customer = customerRepository.findByCustomerId(1);
     assertNotNull(customer);
     assertNotNull(customer.getAccount());
+  }
+
+  @Test
+  public void testLoadAll() {
+    List<Customer> customers = customerRepository.findAll();
+    assertThat(customers.size(), is(4));
   }
 }
