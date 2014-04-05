@@ -4,10 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Set;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customerId")
+@XmlRootElement
 @Entity
 @Table(name = "CUSTOMER")
 public class Customer implements Serializable {
@@ -74,6 +77,7 @@ public class Customer implements Serializable {
     return serialVersionUID;
   }
 
+  @XmlTransient
   public Account getAccount() {
     return account;
   }
@@ -96,8 +100,6 @@ public class Customer implements Serializable {
     if (this.customerId == null) {
       return 0;
     }
-
     return 17 * (this.customerId ^ (this.customerId >>> 16));
   }
-
 }

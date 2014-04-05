@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "creditCardId")
+@XmlRootElement
 @Entity
 @Table(name = "CREDITCARD")
 public class CreditCard {
@@ -71,7 +73,6 @@ public class CreditCard {
     if (this.creditCardId == null) {
       return 0;
     }
-
     return 17 * (this.creditCardId ^ (this.creditCardId >>> 16));
   }
 }

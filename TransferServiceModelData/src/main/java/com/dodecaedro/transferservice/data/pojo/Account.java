@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "accountId")
+@XmlRootElement
 @Entity
 @Table(name = "ACCOUNT")
 public class Account implements Serializable {
@@ -78,7 +80,6 @@ public class Account implements Serializable {
     if (this.accountId == null) {
       return 0;
     }
-
     return 17 * (this.accountId ^ (this.accountId >>> 16));
   }
 }

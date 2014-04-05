@@ -32,6 +32,8 @@ public class CustomersController {
     return customerRepository.findAll();
   }
 
+  // these starting here go to a jsp page
+
   @RequestMapping(value = "/customers/{customerId}", method = RequestMethod.GET, produces = "text/html")
   public String getCustomerByCustomerId(@PathVariable Integer customerId, Model model) {
     model.addAttribute("customer", customerRepository.findByCustomerId(customerId));
