@@ -17,6 +17,7 @@
           <li>
             <c:out value="${customer.firstName}"/>
             <c:out value="${customer.lastName}"/>
+            <a href="<c:url value="/customers/${customer.customerId}"/>">Details</a>
           </li>
         </ul>
       </c:forEach>
