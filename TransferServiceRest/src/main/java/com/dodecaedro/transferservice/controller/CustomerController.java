@@ -9,19 +9,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
+import java.util.List;
 
+/**
+ * Created by juan on 05/04/14.
+ */
 @Controller
-@RequestMapping("/customer")
 public class CustomerController {
+  @Inject
+  private CustomerRepository customerRepository;
 
-	@Inject
-	CustomerRepository customerRepository;
+  @RequestMapping(value = "/customers/{customerId}", method = RequestMethod.GET, produces = {"application/xml", "application/json"})
+  @ResponseBody
+  public Customer getCustomerByCustomerId(@PathVariable Integer customerId) {
+    return customerRepository.findByCustomerId(customerId);
+  }
 
-	@RequestMapping(value = "{customerId}", method = RequestMethod.GET)
-	@ResponseBody
-	public Customer getCustomerByCustomerId(@PathVariable Integer customerId) {
-		return customerRepository.findByCustomerId(customerId);
-	}
-
-
+  @RequestMapping(value = "/customers", method = RequestMethod.GET, produces = {"application/xml", "application/json"})
+  @ResponseBody
+  public List<Customer> getAllCustomers() {
+    return customerRepository.findAll();
+  }
 }

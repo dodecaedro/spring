@@ -11,6 +11,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
@@ -44,6 +45,6 @@ public class JpaCustomerRepositoryTest {
   @Test
   public void testLoadAll() {
     List<Customer> customers = customerRepository.findAll();
-    assertThat(customers.size(), is(4));
+    assertThat(customers.size(), is(not(0)));
   }
 }
