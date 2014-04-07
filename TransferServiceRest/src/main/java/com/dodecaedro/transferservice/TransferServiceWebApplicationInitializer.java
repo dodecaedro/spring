@@ -19,6 +19,6 @@ public class TransferServiceWebApplicationInitializer implements WebApplicationI
     ServletRegistration.Dynamic dispatcher =
             container.addServlet("TransferServiceDispatcher", new DispatcherServlet(appContext));
     dispatcher.setLoadOnStartup(1);
-    dispatcher.addMapping("/");
+    dispatcher.addMapping("*.json");
   }
 }

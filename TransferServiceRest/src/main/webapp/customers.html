@@ -1,0 +1,17 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <title>TransferService AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
+    <script src="js/customers.js"></script>
+</head>
+
+<body>
+<h3>Customers</h3>
+<div ng-controller="Customers">
+    <div data-ng-repeat="customer in customers">
+        <p>{{customer.firstName}} {{customer.lastName}}</p>
+    </div>
+</div>
+</body>
+</html>
