@@ -28,6 +28,8 @@
         <module>TransferServiceDaoSpringData</module>
         <module>TransferServiceLogic</module>
         <module>TransferServiceRest</module>
+        <module>TransferServiceAngular</module>
+        <module>TransferServiceWeb</module>
     </modules>
 
     <build>

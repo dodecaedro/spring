@@ -15,7 +15,7 @@
     <name>TransferServiceRest Maven Webapp</name>
 
     <build>
-        <finalName>TransferRest</finalName>
+        <finalName>TransferServiceRest</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
