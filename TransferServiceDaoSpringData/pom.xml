@@ -50,7 +50,7 @@
             </exclusions>
         </dependency>
         <!-- Support for testing Spring applications with tools such as JUnit and
-            TestNG This artifact is generally always defined with a 'test' scope for 
+            TestNG This artifact is generally always defined with a 'test' scope for
             the integration testing framework and unit testing stubs -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -58,16 +58,16 @@
             <version>${org.springframework.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- Transaction Management Abstraction (depends on spring-core, spring-beans, 
-            spring-aop, spring-context) Define this if you use Spring Transactions or 
+        <!-- Transaction Management Abstraction (depends on spring-core, spring-beans,
+            spring-aop, spring-context) Define this if you use Spring Transactions or
             DAO Exception Hierarchy (org.springframework.transaction.*/org.springframework.dao.*) -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
             <version>${org.springframework.version}</version>
         </dependency>
-        <!-- Object-to-Relation-Mapping (ORM) integration with Hibernate, JPA, 
-            and iBatis. (depends on spring-core, spring-beans, spring-context, spring-tx) 
+        <!-- Object-to-Relation-Mapping (ORM) integration with Hibernate, JPA,
+            and iBatis. (depends on spring-core, spring-beans, spring-context, spring-tx)
             Define this if you need ORM (org.springframework.orm.*) -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -104,7 +104,7 @@
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
-            <version>1.3.5</version>
+            <version>${hikaricp.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
