@@ -3,6 +3,7 @@ package com.dodecaedro.transferservice.repository;
 import com.dodecaedro.transferservice.data.pojo.Customer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -11,9 +12,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/application-context.xml", "/test-infrastructure-config.xml"})
@@ -23,6 +22,7 @@ public class JpaCustomerRepositoryTest {
   private CustomerRepository customerRepository;
 
   @Test
+  @DirtiesContext
   public void saveCustomer() throws EntityNotFoundException {
     Customer customer = new Customer();
     customer.setFirstName("Iker");
@@ -45,6 +45,14 @@ public class JpaCustomerRepositoryTest {
   @Test
   public void testLoadAll() {
     List<Customer> customers = customerRepository.findAll();
-    assertThat(customers.size(), is(not(0)));
+    assertThat(customers.size(), is(4));
+  }
+
+  @Test
+  @DirtiesContext
+  public void testDelete() {
+    customerRepository.delete(2);
+    Customer nullCustomer = customerRepository.findByCustomerId(2);
+    assertNull(nullCustomer);
   }
 }

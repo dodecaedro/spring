@@ -5,15 +5,19 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.util.Date;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "creditCardId")
 @XmlRootElement
 @Entity
 @Table(name = "CREDITCARD")
-public class CreditCard {
+public class CreditCard implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @SequenceGenerator(name = "creditCardSeq", sequenceName = "S_CREDITCARD")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "creditCardSeq")
   @Column(name = "ID")
   private Integer creditCardId;
 
@@ -23,7 +27,7 @@ public class CreditCard {
   @Column(name = "EXPIRATION_DATE")
   private Date expirationDate;
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne
   @JoinColumn(name = "CUSTOMER_ID")
   private Customer customer;
 

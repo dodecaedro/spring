@@ -3,6 +3,7 @@ package com.dodecaedro.transferservice.repository;
 import com.dodecaedro.transferservice.data.pojo.Account;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -26,10 +27,12 @@ public class JpaAccountRepositoryTest {
     assertNotNull(account);
   }
 
+  @Test
   public void loadNonExistingAccount() throws EntityNotFoundException {
     assertNull(accountRepository.findByAccountId(99));
   }
 
+  @DirtiesContext
   @Test
   public void updateAccount() throws EntityNotFoundException {
     Account accountOriginal = accountRepository.findByAccountId(2);
@@ -40,5 +43,4 @@ public class JpaAccountRepositoryTest {
 
     assertEquals(accountOriginal.getBalance(), accountUpdated.getBalance());
   }
-
 }

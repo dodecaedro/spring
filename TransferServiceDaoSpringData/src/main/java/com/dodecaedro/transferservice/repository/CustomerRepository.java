@@ -12,4 +12,5 @@ public interface CustomerRepository {
   Customer findByCustomerId(Integer customerId);
   Customer save(Customer customer);
   List<Customer> findAll();
+  void delete(Integer customerId);
 }

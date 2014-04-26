@@ -81,7 +81,7 @@ CREATE TABLE transfer.account
 (
   "id" bigint NOT NULL DEFAULT nextval('transfer.s_account'::regclass),
   "balance" bigint DEFAULT 0,
-  "customer_id" bigint,
+  "customer_id" bigint UNIQUE,
   CONSTRAINT "account_PKEY" PRIMARY KEY ("id"),
   CONSTRAINT "account_FKEY" FOREIGN KEY ("customer_id")
       REFERENCES transfer.customer ("id") MATCH SIMPLE
