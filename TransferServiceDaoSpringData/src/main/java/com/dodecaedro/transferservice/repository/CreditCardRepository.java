@@ -9,7 +9,7 @@ import java.util.List;
 @RepositoryDefinition(domainClass = CreditCard.class, idClass = Integer.class)
 @Transactional
 public interface CreditCardRepository {
-  CreditCard findByCreditCardId(Integer creditCardId);
+  CreditCard findOne(Integer creditCardId);
   CreditCard save(CreditCard creditCard);
   List<CreditCard> findActiveCreditCardsFromCustomer(Integer customerId);
 }

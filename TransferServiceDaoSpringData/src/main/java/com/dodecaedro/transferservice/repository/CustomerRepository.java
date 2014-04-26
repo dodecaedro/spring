@@ -9,7 +9,7 @@ import java.util.List;
 @RepositoryDefinition(domainClass = Customer.class, idClass = Integer.class)
 @Transactional
 public interface CustomerRepository {
-  Customer findByCustomerId(Integer customerId);
+  Customer findOne(Integer customerId);
   Customer save(Customer customer);
   List<Customer> findAll();
   void delete(Integer customerId);

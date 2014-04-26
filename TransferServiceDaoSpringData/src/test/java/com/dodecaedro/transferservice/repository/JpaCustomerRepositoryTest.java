@@ -32,12 +32,12 @@ public class JpaCustomerRepositoryTest {
 
     customer = customerRepository.save(customer);
 
-    assertNotNull(customerRepository.findByCustomerId(customer.getCustomerId()));
+    assertNotNull(customerRepository.findOne(customer.getCustomerId()));
   }
 
   @Test
   public void loadCustomer() throws EntityNotFoundException {
-    Customer customer = customerRepository.findByCustomerId(1);
+    Customer customer = customerRepository.findOne(1);
     assertNotNull(customer);
     assertNotNull(customer.getAccount());
   }
@@ -52,7 +52,7 @@ public class JpaCustomerRepositoryTest {
   @DirtiesContext
   public void testDelete() {
     customerRepository.delete(2);
-    Customer nullCustomer = customerRepository.findByCustomerId(2);
+    Customer nullCustomer = customerRepository.findOne(2);
     assertNull(nullCustomer);
   }
 }

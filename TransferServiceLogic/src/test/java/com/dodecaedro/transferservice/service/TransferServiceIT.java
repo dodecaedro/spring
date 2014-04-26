@@ -27,14 +27,14 @@ public class TransferServiceIT {
 
   @Test
   public void transferFunds() throws EntityNotFoundException, NotEnoughFundsException {
-    Account account1Origin = new Account(accountRepository.findByAccountId(1));
-    Account account2Origin = new Account(accountRepository.findByAccountId(2));
+    Account account1Origin = new Account(accountRepository.findOne(1));
+    Account account2Origin = new Account(accountRepository.findOne(2));
 
     transferService.transferBetweenAccounts(account1Origin.getAccountId(),
             account2Origin.getAccountId(), 75);
 
-    Account account1Updated = accountRepository.findByAccountId(1);
-    Account account2Updated = accountRepository.findByAccountId(2);
+    Account account1Updated = accountRepository.findOne(1);
+    Account account2Updated = accountRepository.findOne(2);
 
     assertEquals(account1Origin.getBalance() - 75,
             account1Updated.getBalance());

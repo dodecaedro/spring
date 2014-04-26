@@ -31,7 +31,7 @@ public class AccountRepositoryStub implements AccountRepository {
   }
 
   @Override
-  public Account findByAccountId(Integer id) {
+  public Account findOne(Integer id) {
     return memoryAccounts.get(id);
   }
 

@@ -21,7 +21,7 @@ public class CustomerController {
   @RequestMapping(value = "/{customerId}", method = RequestMethod.GET, produces = {"application/xml", "application/json"})
   @ResponseBody
   public Customer getCustomerByCustomerId(@PathVariable Integer customerId) {
-    return customerRepository.findByCustomerId(customerId);
+    return customerRepository.findOne(customerId);
   }
 
   @RequestMapping(method = RequestMethod.GET, produces = {"application/xml", "application/json"})

@@ -1,7 +1,5 @@
 package com.dodecaedro.transferservice.aspect;
 
-import com.dodecaedro.transferservice.data.pojo.Account;
-import com.dodecaedro.transferservice.data.pojo.Customer;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
@@ -9,19 +7,15 @@ import org.aspectj.lang.annotation.Pointcut;
 public class SystemPointCuts {
 
   @Pointcut("execution(public * com.dodecaedro.transferservice.repository.*Repository.*(..))")
-  public void repositoryMethods() {
-  }
-
-  @Pointcut("com.dodecaedro.transferservice.aspect.SystemPointCuts.repositoryMethods() && args(account)")
-  public void repositoryAccountAccessMethods(Account account) {
-  }
-
-  @Pointcut("com.dodecaedro.transferservice.aspect.SystemPointCuts.repositoryMethods() && args(customer)")
-  public void repositoryCustomerAccessMethods(Customer customer) {
-  }
+  public void repositoryMethods() {}
 
   @Pointcut("execution(public * com.dodecaedro.transferservice.service.*Service.*(..))")
-  public void serviceMethods() {
-  }
+  public void serviceMethods() {}
+
+  @Pointcut("execution(public * com.dodecaedro.transferservice.repository.*Repository.find*(..))")
+  public void repositoryQueryMethods(){}
+
+  @Pointcut("execution(public * com.dodecaedro.transferservice.repository.*Repository.save(..))")
+  public void repositorySaveMethods(){}
 
 }

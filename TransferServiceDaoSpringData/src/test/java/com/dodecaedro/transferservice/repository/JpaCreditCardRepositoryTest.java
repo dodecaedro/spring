@@ -20,7 +20,7 @@ public class JpaCreditCardRepositoryTest {
 
   @Test
   public void findByCurrentCardTest() {
-    CreditCard creditCard = creditCardRepository.findByCreditCardId(1);
+    CreditCard creditCard = creditCardRepository.findOne(1);
     assertNotNull(creditCard);
   }
 

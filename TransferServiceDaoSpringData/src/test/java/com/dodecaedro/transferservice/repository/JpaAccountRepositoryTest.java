@@ -23,23 +23,23 @@ public class JpaAccountRepositoryTest {
 
   @Test
   public void loadAccount() throws EntityNotFoundException {
-    Account account = accountRepository.findByAccountId(1);
+    Account account = accountRepository.findOne(1);
     assertNotNull(account);
   }
 
   @Test
   public void loadNonExistingAccount() throws EntityNotFoundException {
-    assertNull(accountRepository.findByAccountId(99));
+    assertNull(accountRepository.findOne(99));
   }
 
   @DirtiesContext
   @Test
   public void updateAccount() throws EntityNotFoundException {
-    Account accountOriginal = accountRepository.findByAccountId(2);
+    Account accountOriginal = accountRepository.findOne(2);
     accountOriginal.debit(50);
     accountOriginal = accountRepository.save(accountOriginal);
 
-    Account accountUpdated = accountRepository.findByAccountId(2);
+    Account accountUpdated = accountRepository.findOne(2);
 
     assertEquals(accountOriginal.getBalance(), accountUpdated.getBalance());
   }

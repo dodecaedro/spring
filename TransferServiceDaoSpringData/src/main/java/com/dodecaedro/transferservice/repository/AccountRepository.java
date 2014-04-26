@@ -7,6 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RepositoryDefinition(domainClass = Account.class, idClass = Integer.class)
 @Transactional
 public interface AccountRepository {
-  Account findByAccountId(Integer accountId);
+  Account findOne(Integer accountId);
   Account save(Account account);
 }

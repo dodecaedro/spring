@@ -37,8 +37,8 @@ public class TransferServiceImpl implements TransferService {
 
   @Override
   public void transferBetweenAccounts(int accountOriginId, int accountTargetId, int amount) throws NotEnoughFundsException {
-    Account accountOrigin = accountRepository.findByAccountId(accountOriginId);
-    Account accountTarget = accountRepository.findByAccountId(accountTargetId);
+    Account accountOrigin = accountRepository.findOne(accountOriginId);
+    Account accountTarget = accountRepository.findOne(accountTargetId);
 
     if (accountOrigin.getBalance() < amount) {
       throw new NotEnoughFundsException("Account: " + accountOriginId + " does not have enough funds for the transfer");
@@ -54,8 +54,8 @@ public class TransferServiceImpl implements TransferService {
 
   @Override
   public void transferBetweemCustomers(int sourceCustomerId, int targetCustomerId, int amount) throws NotEnoughFundsException {
-    Customer sourceCustomer = customerRepository.findByCustomerId(sourceCustomerId);
-    Customer targetCustomer = customerRepository.findByCustomerId(targetCustomerId);
+    Customer sourceCustomer = customerRepository.findOne(sourceCustomerId);
+    Customer targetCustomer = customerRepository.findOne(targetCustomerId);
 
     if (sourceCustomer.getAccount().getBalance() < amount) {
       throw new NotEnoughFundsException("Customer: " + sourceCustomerId + " does not have enough funds for the transfer");
@@ -70,7 +70,7 @@ public class TransferServiceImpl implements TransferService {
 
   @Override
   public void payWithCreditCard(Integer creditCardId, int amount) throws NotEnoughFundsException {
-    CreditCard creditCard = creditCardRepository.findByCreditCardId(creditCardId);
+    CreditCard creditCard = creditCardRepository.findOne(creditCardId);
     Customer customer = creditCard.getCustomer();
     Account account = customer.getAccount();
 
