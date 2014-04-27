@@ -1,0 +1,9 @@
+<h3>Customers</h3>
+<div class="search">
+  <input type="text" ng-model="nameFilter" placeholder="Search..."/>
+</div>
+<div class="customerList">
+  <div data-ng-repeat="customer in customers | filter: nameFilter">
+     <p><a href="#/customers/{{customer.customerId}}">{{$index + 1}}  {{customer.firstName}} {{customer.lastName}}</a></p>
+  </div>
+</div>
