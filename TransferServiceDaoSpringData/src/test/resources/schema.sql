@@ -1,11 +1,11 @@
-drop table ACCOUNT if exists;
-drop sequence S_ACCOUNT if exists;
+drop table ACCOUNT if exists cascade;
+drop sequence S_ACCOUNT if exists cascade;
 
-drop table CUSTOMER if exists;
-drop sequence S_CUSTOMER if exists;
+drop table CUSTOMER if exists cascade;
+drop sequence S_CUSTOMER if exists cascade;
 
-drop table CREDITCARD if exists;
-drop sequence S_CREDITCARD if exists;
+drop table CREDITCARD if exists cascade;
+drop sequence S_CREDITCARD if exists cascade;
 
 create sequence S_ACCOUNT start with 1;
 create sequence S_CUSTOMER start with 1;

@@ -1,11 +1,12 @@
 package com.dodecaedro.transferservice.service;
 
+import com.dodecaedro.transferservice.configuration.TransferServiceConfiguration;
 import com.dodecaedro.transferservice.data.exception.NotEnoughFundsException;
 import com.dodecaedro.transferservice.data.pojo.Account;
 import com.dodecaedro.transferservice.repository.AccountRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
@@ -16,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/application-context.xml", "/test-infrastructure-config.xml"})
+@SpringApplicationConfiguration(classes = TransferServiceConfiguration.class)
 public class TransferServiceIT {
   @Inject
   private TransferService transferService;

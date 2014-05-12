@@ -1,11 +1,12 @@
 package com.dodecaedro.transferservice.repository;
 
+import com.dodecaedro.transferservice.configuration.TransferServiceDaoConfiguration;
 import com.dodecaedro.transferservice.data.pojo.Account;
 import com.dodecaedro.transferservice.data.pojo.CreditCard;
 import com.dodecaedro.transferservice.data.pojo.Customer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
@@ -13,13 +14,13 @@ import javax.inject.Named;
 import javax.persistence.EntityNotFoundException;
 import java.util.Date;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/application-context.xml", "/test-infrastructure-config.xml"})
+@SpringApplicationConfiguration(classes = TransferServiceDaoConfiguration.class)
 public class JpaRepositoryIntegrationTest {
 
   @Inject
@@ -63,6 +64,7 @@ public class JpaRepositoryIntegrationTest {
     Customer customer = customerRepository.findOne(1);
     assertThat(customer.getCreditCards().size(), is(2));
   }
+
 
   @Test
   public void saveCustomerAndAccountAndCreditCard() throws EntityNotFoundException {

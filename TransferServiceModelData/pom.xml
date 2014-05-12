@@ -13,16 +13,11 @@
     <name>TransferServiceModelData</name>
 
     <dependencies>
-        <!-- jpa 2.0 javax.persistence classes only -->
+        <!-- jpa 2.1 javax.persistence annotation classes only -->
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
             <version>1.0.0.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${fasterxml.version}</version>
         </dependency>
     </dependencies>
 </project>

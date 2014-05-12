@@ -1,9 +1,0 @@
-# tomcat-jdbc pool properties
-# http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html
-# append 'dataSource' for spring to set the value in the database bean
-
-dataSource.driverClassName=org.postgresql.Driver
-dataSource.url=jdbc:postgresql://develvm:5432/transferdb
-dataSource.username=transferuser
-dataSource.password=transferpassword
-dataSource.removeAbandoned=true

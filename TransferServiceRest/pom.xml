@@ -73,6 +73,7 @@
                             <includes>
                                 <include>**/*.xml</include>
                                 <include>**/*.properties</include>
+                                <include>**/*.yml</include>
                             </includes>
                             <excludes>
                                 <exclude>**/META-INF/**/*.*</exclude>
@@ -92,35 +93,28 @@
         </dependency>
         <dependency>
             <groupId>com.dodecaedro.transferservice</groupId>
+            <artifactId>TransferServiceDaoSpringData</artifactId>
+            <scope>compile</scope>
+            <version>2.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dodecaedro.transferservice</groupId>
             <artifactId>TransferServiceLogic</artifactId>
             <version>2.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${org.springframework.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Jackson JSON Mapper -->
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${fasterxml.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-            <version>1</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 </project>

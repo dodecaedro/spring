@@ -6,9 +6,9 @@ import org.springframework.data.repository.NoRepositoryBean;
 import java.util.Map;
 import java.util.TreeMap;
 
-// notice this is not annotated. it is manually injected
 @NoRepositoryBean
 public class AccountRepositoryStub implements AccountRepository {
+
   private Map<Integer, Account> memoryAccounts;
 
   public AccountRepositoryStub() {
@@ -40,5 +40,4 @@ public class AccountRepositoryStub implements AccountRepository {
     memoryAccounts.put(account.getAccountId(), account);
     return account;
   }
-
 }

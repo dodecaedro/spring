@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driverClassName=org.postgresql.Driver
+    username=transferuser
+    password=transferpassword
+    url=jdbc:postgresql://develvm:5432/transferdb
