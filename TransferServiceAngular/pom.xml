@@ -13,4 +13,31 @@
     <artifactId>TransferServiceAngular</artifactId>
     <packaging>jar</packaging>
     <name>TransferServiceAngular Maven App</name>
+
+    <properties>
+        <angularjs.version>1.2.12</angularjs.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>angularjs</artifactId>
+            <version>${angularjs.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.html</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>
