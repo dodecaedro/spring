@@ -10,16 +10,25 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
 
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TransferServiceDaoConfiguration.class)
-public class JpaAccountRepositoryTest {
+public class JpaAccountRepositoryIntegrationTests {
 
   @Inject
   @Named("accountRepository")
   private AccountRepository accountRepository;
+
+
+  @Test
+  public void loadAllAccounts() {
+    List<Account> accounts = accountRepository.findAll();
+    assertThat(accounts, is(not(empty())));
+  }
 
   @Test
   public void loadAccount() {

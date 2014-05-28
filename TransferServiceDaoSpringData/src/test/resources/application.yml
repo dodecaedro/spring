@@ -1,4 +1,0 @@
-spring:
-  datasource:
-    name: testDatasource
-    driverClassName: org.hsqldb.jdbc.JDBCDriver

@@ -11,17 +11,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityNotFoundException;
 import java.util.Date;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TransferServiceDaoConfiguration.class)
-public class JpaRepositoryIntegrationTest {
+public class JpaRepositoryIntegrationTests {
 
   @Inject
   @Named("accountRepository")
@@ -65,9 +62,8 @@ public class JpaRepositoryIntegrationTest {
     assertThat(customer.getCreditCards().size(), is(2));
   }
 
-
   @Test
-  public void saveCustomerAndAccountAndCreditCard() throws EntityNotFoundException {
+  public void saveCustomerAndAccountAndCreditCard() throws Exception {
     Customer customer = createCustomer();
     customer = customerRepository.save(customer);
 

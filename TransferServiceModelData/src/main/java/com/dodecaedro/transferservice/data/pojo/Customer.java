@@ -32,9 +32,9 @@ public class Customer implements Serializable {
   private String address;
 
   // deleting a customer should also delete his account and all credit cards
-  @OneToOne(mappedBy = "customer", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+  @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private Account account;
-  @OneToMany(mappedBy = "customer", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private Set<CreditCard> creditCards;
 
   public Integer getCustomerId() {

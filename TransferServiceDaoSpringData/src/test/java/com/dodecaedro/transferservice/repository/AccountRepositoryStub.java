@@ -3,6 +3,8 @@ package com.dodecaedro.transferservice.repository;
 import com.dodecaedro.transferservice.data.pojo.Account;
 import org.springframework.data.repository.NoRepositoryBean;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -39,5 +41,10 @@ public class AccountRepositoryStub implements AccountRepository {
   public Account save(Account account) {
     memoryAccounts.put(account.getAccountId(), account);
     return account;
+  }
+
+  @Override
+  public List<Account> findAll() {
+    return new ArrayList<>(memoryAccounts.values());
   }
 }
