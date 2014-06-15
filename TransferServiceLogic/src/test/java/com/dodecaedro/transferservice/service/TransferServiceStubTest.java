@@ -4,6 +4,7 @@ import com.dodecaedro.transferservice.data.exception.NotEnoughFundsException;
 import com.dodecaedro.transferservice.data.pojo.Account;
 import com.dodecaedro.transferservice.repository.AccountRepository;
 import com.dodecaedro.transferservice.repository.AccountRepositoryStub;
+import com.dodecaedro.transferservice.repository.TransferRepositoryStub;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,6 +22,7 @@ public class TransferServiceStubTest {
     this.accountRepository = new AccountRepositoryStub();
 
     transferService.setAccountRepository(accountRepository);
+    transferService.setTransferRepository(new TransferRepositoryStub());
   }
 
   @Test

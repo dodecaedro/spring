@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.1.0.M2</version>
+        <version>1.1.1.RELEASE</version>
     </parent>
 
     <!-- override older dependency versions from starter parent pomfile -->
@@ -77,7 +77,6 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.inject</groupId>
@@ -90,13 +89,4 @@
             <artifactId>logback-classic</artifactId>
         </dependency>
     </dependencies>
-
-    <!-- Add Spring repoistories -->
-    <!-- (you don't need this if you are using a .RELEASE version) -->
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <url>http://repo.spring.io/milestone</url>
-        </repository>
-    </repositories>    
 </project>

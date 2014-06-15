@@ -105,6 +105,9 @@ public class JpaRepositoryIntegrationTests {
 
   @Test
   public void testDeleteCustomerDeletesAll() {
+    // if saved all by saving the customer,
+    // the ids in the children objects will not be set
+
     Customer customer = createCustomer();
     customerRepository.save(customer);
 
