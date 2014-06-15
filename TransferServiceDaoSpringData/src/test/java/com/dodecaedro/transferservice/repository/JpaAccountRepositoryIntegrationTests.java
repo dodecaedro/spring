@@ -45,7 +45,7 @@ public class JpaAccountRepositoryIntegrationTests {
   @Test
   public void updateAccount() {
     Account accountOriginal = accountRepository.findOne(2);
-    accountOriginal.debit(50);
+    accountOriginal.debit(Account.toMoney(50));
     accountOriginal = accountRepository.save(accountOriginal);
 
     Account accountUpdated = accountRepository.findOne(2);

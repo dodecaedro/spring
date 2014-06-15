@@ -9,6 +9,7 @@ import com.dodecaedro.transferservice.repository.AccountRepository;
 import com.dodecaedro.transferservice.repository.CreditCardRepository;
 import com.dodecaedro.transferservice.repository.CustomerRepository;
 import com.dodecaedro.transferservice.repository.TransferRepository;
+import org.joda.money.Money;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -65,12 +66,13 @@ public class TransferServiceImpl implements TransferService {
   }
 
   private void transferFunds(Account accountOrigin, Account accountTarget, long amount) throws NotEnoughFundsException {
-    if (accountOrigin.getBalance() < amount) {
+    Money moneyAmount = Account.toMoney(amount);
+    if (accountOrigin.getBalance().isLessThan(moneyAmount)) {
       throw new NotEnoughFundsException("Account: " + accountOrigin.getAccountId() + " does not have enough funds for the transfer");
     }
 
-    accountOrigin.debit(amount);
-    accountTarget.credit(amount);
+    accountOrigin.debit(moneyAmount);
+    accountTarget.credit(moneyAmount);
 
     Transfer transfer = new Transfer();
     transfer.setAccountOrigin(accountOrigin);
@@ -84,15 +86,16 @@ public class TransferServiceImpl implements TransferService {
 
   @Override
   public void payWithCreditCard(Integer creditCardId, long amount) throws NotEnoughFundsException {
+    Money moneyAmount = Account.toMoney(amount);
     CreditCard creditCard = creditCardRepository.findOne(creditCardId);
     Customer customer = creditCard.getCustomer();
     Account account = customer.getAccount();
 
-    if (account.getBalance() < amount) {
+    if (account.getBalance().isLessThan(moneyAmount)) {
       throw new NotEnoughFundsException("Account: " + account.getAccountId() + " does not have enough funds for the payment");
     }
 
-    account.debit(amount);
+    account.debit(moneyAmount);
     accountRepository.save(account);
   }
 

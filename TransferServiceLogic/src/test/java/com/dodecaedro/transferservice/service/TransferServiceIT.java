@@ -37,9 +37,9 @@ public class TransferServiceIT {
     Account account1Updated = accountRepository.findOne(1);
     Account account2Updated = accountRepository.findOne(2);
 
-    assertEquals(account1Origin.getBalance() - 75,
+    assertEquals(account1Origin.getBalance().minus(75),
             account1Updated.getBalance());
-    assertEquals(account2Origin.getBalance() + 75,
+    assertEquals(account2Origin.getBalance().plus(75),
             account2Updated.getBalance());
   }
 

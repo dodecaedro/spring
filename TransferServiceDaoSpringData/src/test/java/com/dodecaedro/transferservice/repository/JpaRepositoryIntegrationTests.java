@@ -35,7 +35,7 @@ public class JpaRepositoryIntegrationTests {
 
     Account account = new Account();
     account.setCustomer(customer);
-    account.credit(200);
+    account.credit(Account.toMoney(200));
 
     accountRepository.save(account);
 
@@ -140,7 +140,7 @@ public class JpaRepositoryIntegrationTests {
 
   private Account createAccount() {
     Account account = new Account();
-    account.credit(100);
+    account.credit(Account.toMoney(100));
     return account;
   }
 

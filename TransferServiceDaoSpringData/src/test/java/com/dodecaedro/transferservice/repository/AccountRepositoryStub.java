@@ -16,15 +16,15 @@ public class AccountRepositoryStub implements AccountRepository {
   public AccountRepositoryStub() {
     Account account1 = new Account();
     account1.setAccountId(1);
-    account1.credit(150);
+    account1.credit(Account.toMoney(150));
 
     Account account2 = new Account();
     account2.setAccountId(2);
-    account2.credit(100);
+    account2.credit(Account.toMoney(100));
 
     Account account3 = new Account();
     account3.setAccountId(3);
-    account3.credit(250);
+    account3.credit(Account.toMoney(250));
 
     memoryAccounts = new TreeMap<>();
     memoryAccounts.put(1, account1);
