@@ -15,7 +15,7 @@ CREATE SEQUENCE transfer.s_account
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
-  START 1
+  START 5
   CACHE 1
   CYCLE;
 ALTER TABLE transfer.s_account
@@ -30,7 +30,7 @@ CREATE SEQUENCE transfer.s_creditcard
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
-  START 1
+  START 5
   CACHE 1
   CYCLE;
 ALTER TABLE transfer.s_creditcard
@@ -49,6 +49,20 @@ CREATE SEQUENCE transfer.s_customer
   CACHE 1
   CYCLE;
 ALTER TABLE transfer.s_customer
+  OWNER TO transferuser;
+
+-- Sequence: transfer."s_customer"
+
+DROP SEQUENCE IF EXISTS transfer.s_transfer;
+
+CREATE SEQUENCE transfer.s_transfer
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 3
+  CACHE 1
+  CYCLE;
+ALTER TABLE transfer.s_transfer
   OWNER TO transferuser;
 
 
@@ -114,3 +128,29 @@ WITH (
 );
 ALTER TABLE transfer.creditcard
   OWNER TO transferuser;
+
+
+-- Table: transfer."transfer"
+
+DROP TABLE IF EXISTS transfer.transfer;
+
+CREATE TABLE transfer.transfer
+(
+  "id" bigint NOT NULL DEFAULT nextval('transfer.s_transfer'::regclass),
+  "transfer_date" timestamp without time zone NOT NULL,
+  "account_origin_id" bigint,
+  "account_target_id" bigint,
+  "amount" bigint,
+  CONSTRAINT "transfer_PKEY" PRIMARY KEY ("id"),
+  CONSTRAINT "account_origin_FKEY" FOREIGN KEY ("account_origin_id")
+      REFERENCES transfer.account ("id") MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE SET NULL,
+  CONSTRAINT "account_target_FKEY" FOREIGN KEY ("account_target_id")
+      REFERENCES transfer.account ("id") MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE SET NULL      
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE transfer.creditcard
+  OWNER TO transferuser;  

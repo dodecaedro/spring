@@ -4,6 +4,7 @@ import com.dodecaedro.transferservice.data.exception.NotEnoughFundsException;
 import com.dodecaedro.transferservice.data.pojo.Account;
 import com.dodecaedro.transferservice.repository.AccountRepository;
 import com.dodecaedro.transferservice.repository.AccountRepositoryStub;
+import com.dodecaedro.transferservice.repository.TransferRepositoryStub;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,6 +22,7 @@ public class TransferServiceStubTest {
     this.accountRepository = new AccountRepositoryStub();
 
     transferService.setAccountRepository(accountRepository);
+    transferService.setTransferRepository(new TransferRepositoryStub());
   }
 
   @Test
@@ -34,9 +36,9 @@ public class TransferServiceStubTest {
     Account account1Updated = accountRepository.findOne(1);
     Account account2Updated = accountRepository.findOne(2);
 
-    assertEquals(account1Origin.getBalance() - 75,
+    assertEquals(account1Origin.getBalance().minus(75),
             account1Updated.getBalance());
-    assertEquals(account2Origin.getBalance() + 75,
+    assertEquals(account2Origin.getBalance().plus(75),
             account2Updated.getBalance());
   }
 

@@ -1,7 +1,11 @@
 package com.dodecaedro.transferservice.data.pojo;
 
+import com.dodecaedro.transferservice.data.serializers.MoneySerializer;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.joda.money.CurrencyUnit;
+import org.joda.money.Money;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,7 +25,8 @@ public class Account implements Serializable {
   private Integer accountId;
 
   @Column(name = "BALANCE")
-  private long balance;
+  @JsonSerialize(using = MoneySerializer.class)
+  private Money balance = Money.zero(CurrencyUnit.EUR);
 
   @OneToOne
   @JoinColumn(name = "CUSTOMER_ID", nullable = false)
@@ -39,12 +44,12 @@ public class Account implements Serializable {
   public Account() {
   }
 
-  public void debit(long amount) {
-    this.balance -= amount;
+  public void debit(Money amount) {
+    this.balance = this.balance.minus(amount);
   }
 
-  public void credit(long amount) {
-    this.balance += amount;
+  public void credit(Money amount) {
+    this.balance = this.balance.plus(amount);
   }
 
   public Integer getAccountId() {
@@ -55,7 +60,7 @@ public class Account implements Serializable {
     this.accountId = accountId;
   }
 
-  public long getBalance() {
+  public Money getBalance() {
     return balance;
   }
 
@@ -82,5 +87,9 @@ public class Account implements Serializable {
       return 0;
     }
     return 17 * (this.accountId ^ (this.accountId >>> 16));
+  }
+
+  public static Money toMoney(long amount) {
+    return Money.ofMajor(CurrencyUnit.EUR, amount);
   }
 }

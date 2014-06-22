@@ -1,26 +1,24 @@
 package com.dodecaedro.transferservice.repository;
 
+import com.dodecaedro.transferservice.configuration.TransferServiceDaoConfiguration;
 import com.dodecaedro.transferservice.data.pojo.Account;
 import com.dodecaedro.transferservice.data.pojo.CreditCard;
 import com.dodecaedro.transferservice.data.pojo.Customer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityNotFoundException;
 import java.util.Date;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/application-context.xml", "/test-infrastructure-config.xml"})
-public class JpaRepositoryIntegrationTest {
+@SpringApplicationConfiguration(classes = TransferServiceDaoConfiguration.class)
+public class JpaRepositoryIntegrationTests {
 
   @Inject
   @Named("accountRepository")
@@ -37,7 +35,7 @@ public class JpaRepositoryIntegrationTest {
 
     Account account = new Account();
     account.setCustomer(customer);
-    account.credit(200);
+    account.credit(Account.toMoney(200));
 
     accountRepository.save(account);
 
@@ -65,7 +63,7 @@ public class JpaRepositoryIntegrationTest {
   }
 
   @Test
-  public void saveCustomerAndAccountAndCreditCard() throws EntityNotFoundException {
+  public void saveCustomerAndAccountAndCreditCard() throws Exception {
     Customer customer = createCustomer();
     customer = customerRepository.save(customer);
 
@@ -107,6 +105,9 @@ public class JpaRepositoryIntegrationTest {
 
   @Test
   public void testDeleteCustomerDeletesAll() {
+    // if saved all by saving the customer,
+    // the ids in the children objects will not be set
+
     Customer customer = createCustomer();
     customerRepository.save(customer);
 
@@ -139,7 +140,7 @@ public class JpaRepositoryIntegrationTest {
 
   private Account createAccount() {
     Account account = new Account();
-    account.credit(100);
+    account.credit(Account.toMoney(100));
     return account;
   }
 

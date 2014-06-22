@@ -15,7 +15,7 @@ public class AccountTest {
   public void testEqualsItself() {
     Account account1 = new Account();
     account1.setAccountId(1);
-    account1.credit(1000);
+    account1.credit(Account.toMoney(1000));
 
     assertTrue(account1.equals(account1));
 
@@ -27,7 +27,7 @@ public class AccountTest {
   public void testEqualsOther() {
     Account account1 = new Account();
     account1.setAccountId(1);
-    account1.credit(1000);
+    account1.credit(Account.toMoney(1000));
 
     Account account2 = new Account(account1);
     assertTrue(account2.equals(account1));
@@ -38,11 +38,11 @@ public class AccountTest {
   public void testNotEquals() {
     Account account1 = new Account();
     account1.setAccountId(1);
-    account1.credit(1000);
+    account1.credit(Account.toMoney(1000));
 
     Account account2 = new Account();
     account2.setAccountId(2);
-    account2.credit(1000);
+    account2.credit(Account.toMoney(1000));
 
     assertFalse(account1.equals(account2));
   }
@@ -51,7 +51,7 @@ public class AccountTest {
   public void testNotEqualsNull() {
     Account account1 = new Account();
     account1.setAccountId(1);
-    account1.credit(1000);
+    account1.credit(Account.toMoney(1000));
 
     assertFalse(account1.equals(null));
   }
@@ -60,7 +60,7 @@ public class AccountTest {
   public void testSameHashCodeEqualObjects() {
     Account account1 = new Account();
     account1.setAccountId(1);
-    account1.credit(1000);
+    account1.credit(Account.toMoney(1000));
 
     Account account2 = new Account(account1);
 

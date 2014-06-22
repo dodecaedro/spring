@@ -1,10 +1,11 @@
 package com.dodecaedro.transferservice.service;
 
+import com.dodecaedro.transferservice.configuration.TransferServiceConfiguration;
 import com.dodecaedro.transferservice.repository.AccountRepository;
 import com.dodecaedro.transferservice.repository.CreditCardRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
@@ -15,7 +16,7 @@ import javax.persistence.EntityNotFoundException;
  * Created by juan on 26/04/14.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/application-context.xml", "/test-infrastructure-config.xml"})
+@SpringApplicationConfiguration(classes = TransferServiceConfiguration.class)
 public class AspectTest {
   @Inject
   @Named("accountRepository")
