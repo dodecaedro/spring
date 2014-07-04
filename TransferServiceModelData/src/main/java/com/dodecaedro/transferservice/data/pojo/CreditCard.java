@@ -2,11 +2,11 @@ package com.dodecaedro.transferservice.data.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.Date;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "creditCardId")
 @XmlRootElement
@@ -22,10 +22,10 @@ public class CreditCard implements Serializable {
   private Integer creditCardId;
 
   @Column(name = "ISSUE_DATE")
-  private Date issueDate;
+  private DateTime issueDate;
 
   @Column(name = "EXPIRATION_DATE")
-  private Date expirationDate;
+  private DateTime expirationDate;
 
   @ManyToOne
   @JoinColumn(name = "CUSTOMER_ID")
@@ -39,19 +39,19 @@ public class CreditCard implements Serializable {
     this.creditCardId = creditCardId;
   }
 
-  public Date getIssueDate() {
+  public DateTime getIssueDate() {
     return issueDate;
   }
 
-  public void setIssueDate(Date issueDate) {
+  public void setIssueDate(DateTime issueDate) {
     this.issueDate = issueDate;
   }
 
-  public Date getExpirationDate() {
+  public DateTime getExpirationDate() {
     return expirationDate;
   }
 
-  public void setExpirationDate(Date expirationDate) {
+  public void setExpirationDate(DateTime expirationDate) {
     this.expirationDate = expirationDate;
   }
 

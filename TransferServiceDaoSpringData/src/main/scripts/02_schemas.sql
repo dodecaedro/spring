@@ -115,8 +115,8 @@ DROP TABLE IF EXISTS transfer.creditcard;
 CREATE TABLE transfer.creditcard
 (
   "id" bigint NOT NULL DEFAULT nextval('transfer.s_creditcard'::regclass),
-  "issue_date" timestamp without time zone NOT NULL,
-  "expiration_date" timestamp without time zone NOT NULL,
+  "issue_date" timestamp with time zone NOT NULL,
+  "expiration_date" timestamp with time zone NOT NULL,
   "customer_id" bigint,
   CONSTRAINT "creditcard_PKEY" PRIMARY KEY ("id"),
   CONSTRAINT "creditcard_FKEY" FOREIGN KEY ("customer_id")
@@ -137,7 +137,7 @@ DROP TABLE IF EXISTS transfer.transfer;
 CREATE TABLE transfer.transfer
 (
   "id" bigint NOT NULL DEFAULT nextval('transfer.s_transfer'::regclass),
-  "transfer_date" timestamp without time zone NOT NULL,
+  "transfer_date" timestamp with time zone NOT NULL,
   "account_origin_id" bigint,
   "account_target_id" bigint,
   "amount" bigint,
@@ -147,10 +147,10 @@ CREATE TABLE transfer.transfer
       ON UPDATE CASCADE ON DELETE SET NULL,
   CONSTRAINT "account_target_FKEY" FOREIGN KEY ("account_target_id")
       REFERENCES transfer.account ("id") MATCH SIMPLE
-      ON UPDATE CASCADE ON DELETE SET NULL      
+      ON UPDATE CASCADE ON DELETE SET NULL
 )
 WITH (
   OIDS=FALSE
 );
 ALTER TABLE transfer.creditcard
-  OWNER TO transferuser;  
+  OWNER TO transferuser;

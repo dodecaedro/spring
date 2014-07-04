@@ -4,6 +4,7 @@ import com.dodecaedro.transferservice.configuration.TransferServiceDaoConfigurat
 import com.dodecaedro.transferservice.data.pojo.Account;
 import com.dodecaedro.transferservice.data.pojo.CreditCard;
 import com.dodecaedro.transferservice.data.pojo.Customer;
+import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -11,7 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.Date;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
@@ -47,8 +47,8 @@ public class JpaRepositoryIntegrationTests {
     Customer customer = customerRepository.findOne(2);
 
     CreditCard creditCard = new CreditCard();
-    creditCard.setIssueDate(new Date());
-    creditCard.setExpirationDate(new Date());
+    creditCard.setIssueDate(new DateTime());
+    creditCard.setExpirationDate(new DateTime());
     creditCard.setCustomer(customer);
 
     creditCardRepository.save(creditCard);
@@ -146,8 +146,8 @@ public class JpaRepositoryIntegrationTests {
 
   private CreditCard createCreditCard() {
     CreditCard creditCard = new CreditCard();
-    creditCard.setIssueDate(new Date());
-    creditCard.setExpirationDate(new Date());
+    creditCard.setIssueDate(new DateTime());
+    creditCard.setExpirationDate(new DateTime());
     return creditCard;
   }
 }
