@@ -94,7 +94,7 @@ DROP TABLE IF EXISTS transfer.account;
 CREATE TABLE transfer.account
 (
   "id" bigint NOT NULL DEFAULT nextval('transfer.s_account'::regclass),
-  "balance" bigint DEFAULT 0,
+  "balance" numeric(19,2) DEFAULT 0,
   "customer_id" bigint UNIQUE,
   CONSTRAINT "account_PKEY" PRIMARY KEY ("id"),
   CONSTRAINT "account_FKEY" FOREIGN KEY ("customer_id")
@@ -140,7 +140,7 @@ CREATE TABLE transfer.transfer
   "transfer_date" timestamp with time zone NOT NULL,
   "account_origin_id" bigint,
   "account_target_id" bigint,
-  "amount" bigint,
+  "amount" numeric(19,2),
   CONSTRAINT "transfer_PKEY" PRIMARY KEY ("id"),
   CONSTRAINT "account_origin_FKEY" FOREIGN KEY ("account_origin_id")
       REFERENCES transfer.account ("id") MATCH SIMPLE
