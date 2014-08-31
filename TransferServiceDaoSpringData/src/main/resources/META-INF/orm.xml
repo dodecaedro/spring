@@ -7,11 +7,13 @@
 
     <named-query name="CreditCard.findActiveCreditCardsFromCustomer">
         <query>
-            SELECT c
-            FROM CreditCard c
-            WHERE c.expirationDate > CURRENT_DATE
-            AND c.customer.customerId = ?1
-            ORDER BY c.issueDate DESC
+            SELECT cred
+            FROM CreditCard cred
+            JOIN cred.account acc
+            JOIN acc.customer cus
+            WHERE cred.expirationDate > CURRENT_DATE
+            AND cus.customerId = ?1
+            ORDER BY cred.issueDate DESC
         </query>
     </named-query>
 

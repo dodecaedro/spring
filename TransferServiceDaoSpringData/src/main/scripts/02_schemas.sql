@@ -117,10 +117,10 @@ CREATE TABLE transfer.creditcard
   "id" bigint NOT NULL DEFAULT nextval('transfer.s_creditcard'::regclass),
   "issue_date" timestamp with time zone NOT NULL,
   "expiration_date" timestamp with time zone NOT NULL,
-  "customer_id" bigint,
+  "account_id" bigint,
   CONSTRAINT "creditcard_PKEY" PRIMARY KEY ("id"),
-  CONSTRAINT "creditcard_FKEY" FOREIGN KEY ("customer_id")
-      REFERENCES transfer.customer ("id") MATCH SIMPLE
+  CONSTRAINT "creditcard_FKEY" FOREIGN KEY ("account_id")
+      REFERENCES transfer.account ("id") MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE
 )
 WITH (

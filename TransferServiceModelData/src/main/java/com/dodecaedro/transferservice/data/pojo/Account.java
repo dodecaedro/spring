@@ -9,7 +9,10 @@ import org.joda.money.Money;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "accountId")
 @XmlRootElement
@@ -31,6 +34,9 @@ public class Account implements Serializable {
   @OneToOne
   @JoinColumn(name = "CUSTOMER_ID", nullable = false)
   private Customer customer;
+
+  @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  private Set<CreditCard> creditCards;
 
   /*
    * with memory repository, successive calls to the repository would always
@@ -70,6 +76,22 @@ public class Account implements Serializable {
 
   public void setCustomer(Customer customer) {
     this.customer = customer;
+  }
+
+  public void addCreditCard(CreditCard creditCard) {
+    if (this.creditCards == null) {
+      this.creditCards = new HashSet<>();
+    }
+    creditCards.add(creditCard);
+  }
+
+  @XmlTransient
+  public Set<CreditCard> getCreditCards() {
+    return creditCards;
+  }
+
+  public void setCreditCards(Set<CreditCard> creditCards) {
+    this.creditCards = creditCards;
   }
 
   @Override

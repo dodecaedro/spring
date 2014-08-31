@@ -7,8 +7,6 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customerId")
 @XmlRootElement
@@ -31,11 +29,10 @@ public class Customer implements Serializable {
   @Column(name = "ADDRESS")
   private String address;
 
-  // deleting a customer should also delete his account and all credit cards
+  // deleting a customer should also delete his account
   @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private Account account;
-  @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  private Set<CreditCard> creditCards;
+
 
   public Integer getCustomerId() {
     return customerId;
@@ -88,22 +85,6 @@ public class Customer implements Serializable {
 
   public void setAccount(Account account) {
     this.account = account;
-  }
-
-  public void addCreditCard(CreditCard creditCard) {
-    if (this.creditCards == null) {
-      this.creditCards = new HashSet<>();
-    }
-    creditCards.add(creditCard);
-  }
-
-  @XmlTransient
-  public Set<CreditCard> getCreditCards() {
-    return creditCards;
-  }
-
-  public void setCreditCards(Set<CreditCard> creditCards) {
-    this.creditCards = creditCards;
   }
 
   @Override

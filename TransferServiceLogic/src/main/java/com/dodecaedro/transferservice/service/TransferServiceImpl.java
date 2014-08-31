@@ -88,8 +88,7 @@ public class TransferServiceImpl implements TransferService {
   public void payWithCreditCard(Integer creditCardId, long amount) throws NotEnoughFundsException {
     Money moneyAmount = Account.toMoney(amount);
     CreditCard creditCard = creditCardRepository.findOne(creditCardId);
-    Customer customer = creditCard.getCustomer();
-    Account account = customer.getAccount();
+    Account account = creditCard.getAccount();
 
     if (account.getBalance().isLessThan(moneyAmount)) {
       throw new NotEnoughFundsException("Account: " + account.getAccountId() + " does not have enough funds for the payment");

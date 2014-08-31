@@ -49,7 +49,7 @@ public class JpaRepositoryIntegrationTests {
     CreditCard creditCard = new CreditCard();
     creditCard.setIssueDate(new DateTime());
     creditCard.setExpirationDate(new DateTime());
-    creditCard.setCustomer(customer);
+    creditCard.setAccount(customer.getAccount());
 
     creditCardRepository.save(creditCard);
 
@@ -59,7 +59,7 @@ public class JpaRepositoryIntegrationTests {
   @Test
   public void getCustomerCreditCards() {
     Customer customer = customerRepository.findOne(1);
-    assertThat(customer.getCreditCards().size(), is(2));
+    assertThat(customer.getAccount().getCreditCards().size(), is(2));
   }
 
   @Test
@@ -67,19 +67,19 @@ public class JpaRepositoryIntegrationTests {
     Customer customer = createCustomer();
     customer = customerRepository.save(customer);
 
-    CreditCard creditCard = createCreditCard();
-    creditCard.setCustomer(customer);
-    creditCardRepository.save(creditCard);
-
     Account account = createAccount();
     account.setCustomer(customer);
     accountRepository.save(account);
+
+    CreditCard creditCard = createCreditCard();
+    creditCard.setAccount(account);
+    creditCardRepository.save(creditCard);
 
     Customer customerAfterSave = customerRepository.findOne(customer.getCustomerId());
 
     assertNotNull(customerAfterSave.getCustomerId());
     assertNotNull(customerAfterSave.getAccount().getAccountId());
-    assertThat(customerAfterSave.getCreditCards().size(), is(1));
+    assertThat(customerAfterSave.getAccount().getCreditCards().size(), is(1));
   }
 
   @Test
@@ -92,15 +92,15 @@ public class JpaRepositoryIntegrationTests {
     customer.setAccount(account);
 
     CreditCard creditCard = createCreditCard();
-    creditCard.setCustomer(customer);
-    customer.addCreditCard(creditCard);
+    creditCard.setAccount(customer.getAccount());
+    account.addCreditCard(creditCard);
 
     customer = customerRepository.save(customer);
     Customer customerAfterSave = customerRepository.findOne(customer.getCustomerId());
 
     assertNotNull(customerAfterSave);
     assertNotNull(customerAfterSave.getAccount());
-    assertNotNull(customerAfterSave.getCreditCards());
+    assertNotNull(customerAfterSave.getAccount().getCreditCards());
   }
 
   @Test
@@ -116,7 +116,7 @@ public class JpaRepositoryIntegrationTests {
     accountRepository.save(account);
 
     CreditCard creditCard = createCreditCard();
-    creditCard.setCustomer(customer);
+    creditCard.setAccount(account);
     creditCardRepository.save(creditCard);
 
     Integer accountId = account.getAccountId();

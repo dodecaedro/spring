@@ -28,8 +28,8 @@ public class CreditCard implements Serializable {
   private DateTime expirationDate;
 
   @ManyToOne
-  @JoinColumn(name = "CUSTOMER_ID")
-  private Customer customer;
+  @JoinColumn(name = "ACCOUNT_ID")
+  private Account account;
 
   public Integer getCreditCardId() {
     return creditCardId;
@@ -55,12 +55,12 @@ public class CreditCard implements Serializable {
     this.expirationDate = expirationDate;
   }
 
-  public Customer getCustomer() {
-    return customer;
+  public Account getAccount() {
+    return account;
   }
 
-  public void setCustomer(Customer customer) {
-    this.customer = customer;
+  public void setAccount(Account account) {
+    this.account = account;
   }
 
   @Override
