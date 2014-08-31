@@ -8,11 +8,13 @@ var TransferServiceApp = angular.module('TransferServiceApp', [
 // configure routes
 TransferServiceApp.config(function($routeProvider) {
   $routeProvider
+	.when('/', {
+	  templateUrl: 'partials/home.html'})
 	.when('/customers', {
 	  templateUrl: 'partials/customers.html',
 	  controller: 'customersController'})
 	.when('/customers/:id', {
 	  templateUrl: 'partials/customer.html',
 	  controller: 'customerController'})
-	.otherwise({redirectTo: '/customers'});
+	.otherwise({redirectTo: '/'});
 });

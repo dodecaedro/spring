@@ -1,9 +1,37 @@
-<div>
-    <h3>Customers</h3>
-    <div class="search">
-        <input type="text" ng-model="nameFilter" placeholder="Search..."/>
-    </div>
-    <div data-ng-repeat="customer in customers | filter: nameFilter">
-        <p><a href="#/customers/{{customer.customerId}}">{{$index + 1}}  {{customer.firstName}} {{customer.lastName}}</a></p>
+<div class="row">
+    <div class="col-md-12">
+
+        <h2>Customers</h2>
+
+        <div class="search">
+            <input type="text" ng-model="nameFilter" placeholder="Search..."/>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-condensed table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Phone Number</th>
+                        <th>Address</th>
+                        <th>Account</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="customer in customers | filter: nameFilter">
+                        <td>{{$index + 1}}</td>
+                        <td>{{customer.firstName}}</td>
+                        <td>{{customer.lastName}}</td>
+                        <td>{{customer.phoneNumber}}</td>
+                        <td>{{customer.address}}</td>
+                        <td><a href="#/customers/{{customer.customerId}}">See account</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
