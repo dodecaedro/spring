@@ -3,9 +3,11 @@ package com.dodecaedro.transferservice.controller;
 import com.dodecaedro.transferservice.data.pojo.Customer;
 import com.dodecaedro.transferservice.repository.CustomerRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 /**
@@ -18,12 +20,17 @@ public class CustomerController {
   private CustomerRepository customerRepository;
 
   @RequestMapping(value = "/{customerId}", method = RequestMethod.GET, produces = {"application/xml", "application/json"})
-  @ResponseBody
-  public Customer getCustomerByCustomerId(@PathVariable Integer customerId) {
-    return customerRepository.findOne(customerId);
+  public ResponseEntity<Customer> getCustomerByCustomerId(@PathVariable Integer customerId) {
+    try {
+      Customer customer = customerRepository.findOne(customerId);
+      return new ResponseEntity<>(customer, HttpStatus.OK);
+    } catch (EntityNotFoundException exception) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
   }
 
   @RequestMapping(method = RequestMethod.GET, produces = {"application/xml", "application/json"})
+  @ResponseStatus(HttpStatus.OK)
   @ResponseBody
   public List<Customer> getAllCustomers() {
     return customerRepository.findAll();
