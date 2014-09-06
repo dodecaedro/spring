@@ -48,4 +48,10 @@ public class CustomerController {
     customer.setCustomerId(id);
     this.customerRepository.save(customer);
   }
+
+  @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+  public ResponseEntity<Customer> createNewCustomer(@RequestBody Customer customer) {
+    customerRepository.save(customer);
+    return new ResponseEntity<>(customer, HttpStatus.CREATED);
+  }
 }
