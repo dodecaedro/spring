@@ -13,10 +13,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 
+import static com.dodecaedro.transferservice.controller.RestDataFixture.newCustomerJSON;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
@@ -68,5 +71,17 @@ public class CustomerControllerIntegrationTest {
             get(GET_CUSTOMERS_URL)
                     .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
+  }
+
+
+  @Test
+  public void thatCreateOrderUsesHttpCreated() throws Exception {
+    this.mockMvc.perform(
+            post(GET_CUSTOMERS_URL)
+                    .content(newCustomerJSON())
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isCreated());
   }
 }

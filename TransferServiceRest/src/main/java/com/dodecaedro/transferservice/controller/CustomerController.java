@@ -2,9 +2,11 @@ package com.dodecaedro.transferservice.controller;
 
 import com.dodecaedro.transferservice.data.pojo.Customer;
 import com.dodecaedro.transferservice.repository.CustomerRepository;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
@@ -49,9 +51,15 @@ public class CustomerController {
     this.customerRepository.save(customer);
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-  public ResponseEntity<Customer> createNewCustomer(@RequestBody Customer customer) {
+  @RequestMapping(method = RequestMethod.POST)
+  public ResponseEntity<Customer> createNewCustomer(@RequestBody Customer customer, UriComponentsBuilder builder) {
     customerRepository.save(customer);
-    return new ResponseEntity<>(customer, HttpStatus.CREATED);
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setLocation(
+            builder.path("/customers/{id}")
+                    .buildAndExpand(customer.getCustomerId().toString()).toUri());
+
+    return new ResponseEntity<>(customer, headers, HttpStatus.CREATED);
   }
 }
