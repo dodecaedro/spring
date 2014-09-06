@@ -1,7 +1,9 @@
 package com.dodecaedro.transferservice.data.pojo;
 
+import com.dodecaedro.transferservice.data.serializers.DateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
@@ -22,9 +24,11 @@ public class CreditCard implements Serializable {
   private Integer creditCardId;
 
   @Column(name = "ISSUE_DATE")
+  @JsonSerialize(using = DateTimeSerializer.class)
   private DateTime issueDate;
 
   @Column(name = "EXPIRATION_DATE")
+  @JsonSerialize(using = DateTimeSerializer.class)
   private DateTime expirationDate;
 
   @ManyToOne
