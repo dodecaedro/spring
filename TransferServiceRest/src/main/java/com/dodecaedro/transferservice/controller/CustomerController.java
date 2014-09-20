@@ -23,12 +23,13 @@ public class CustomerController {
 
   @RequestMapping(value = "/{customerId}", method = RequestMethod.GET, produces = {"application/xml", "application/json"})
   public ResponseEntity<Customer> getCustomerByCustomerId(@PathVariable Integer customerId) {
-    try {
-      Customer customer = customerRepository.findOne(customerId);
-      return new ResponseEntity<>(customer, HttpStatus.OK);
-    } catch (EntityNotFoundException exception) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+    Customer customer = customerRepository.findOne(customerId);
+    return new ResponseEntity<>(customer, HttpStatus.OK);
+  }
+
+  @ExceptionHandler(EntityNotFoundException.class)
+  public ResponseEntity<Customer> customerNotFound() {
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
   @RequestMapping(method = RequestMethod.GET, produces = {"application/xml", "application/json"})

@@ -35,8 +35,8 @@ public class CustomerControllerIntegrationTest {
   @Mock
   private CustomerRepository repository;
 
-  private static final String GET_CUSTOMER_URL = "/customers/{id}";
-  private static final String GET_CUSTOMERS_URL = "/customers";
+  private static final String CUSTOMER_URL = "/customers/{id}";
+  private static final String CUSTOMERS_URL = "/customers";
 
   @Before
   public void setup() {
@@ -50,7 +50,7 @@ public class CustomerControllerIntegrationTest {
     when(repository.findOne(any(Integer.class))).thenThrow(new EntityNotFoundException());
 
     this.mockMvc.perform(
-            get(GET_CUSTOMER_URL, "99")
+            get(CUSTOMER_URL, "99")
                     .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound());
   }
@@ -59,7 +59,7 @@ public class CustomerControllerIntegrationTest {
   public void thatViewCustomerUsesHttpOK() throws Exception {
     when(repository.findOne(any(Integer.class))).thenReturn(new Customer());
     this.mockMvc.perform(
-            get(GET_CUSTOMER_URL, "1")
+            get(CUSTOMER_URL, "1")
                     .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
   }
@@ -68,7 +68,7 @@ public class CustomerControllerIntegrationTest {
   public void thatViewCustomersUsesHttpOK() throws Exception {
     when(repository.findAll()).thenReturn(new ArrayList<>());
     this.mockMvc.perform(
-            get(GET_CUSTOMERS_URL)
+            get(CUSTOMERS_URL)
                     .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
   }
@@ -77,7 +77,7 @@ public class CustomerControllerIntegrationTest {
   @Test
   public void thatCreateOrderUsesHttpCreated() throws Exception {
     this.mockMvc.perform(
-            post(GET_CUSTOMERS_URL)
+            post(CUSTOMERS_URL)
                     .content(newCustomerJSON())
                     .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.APPLICATION_JSON))
