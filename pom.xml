@@ -1,31 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                             http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                              http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
-  <groupId>com.dodecaedro.transferservice</groupId>
-  <artifactId>TransferService</artifactId>
-  <packaging>pom</packaging>
-  <version>2.0-SNAPSHOT</version>
-  <name>Multi Chapter Simple Parent Project</name>
 
   <!-- Inherit defaults from Spring Boot -->
   <parent>
-    <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.1.6.RELEASE</version>
+    <groupId>org.springframework.boot</groupId>
+    <version>1.2.0.M2</version>
   </parent>
 
-  <!-- override older dependency versions from starter parent pomfile -->
-  <properties>
-    <java.version>1.8</java.version>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <bootstrap.version>3.1.1</bootstrap.version>
-    <jquery.version>1.11.1</jquery.version>
-    <angularjs.version>1.2.22</angularjs.version>
-    <angular-ui-bootstrap.version>0.11.0</angular-ui-bootstrap.version>
-  </properties>
+  <groupId>com.dodecaedro.transferservice</groupId>
+  <artifactId>TransferService</artifactId>
+  <version>2.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Multi Chapter Simple Parent Project</name>
 
   <modules>
     <module>TransferServiceModelData</module>
@@ -36,9 +24,120 @@
     <module>TransferServiceWeb</module>
   </modules>
 
+  <!-- override older dependency versions from starter parent pomfile -->
+  <properties>
+    <angular-ui-bootstrap.version>0.11.0</angular-ui-bootstrap.version>
+    <angularjs.version>1.2.22</angularjs.version>
+    <bootstrap.version>3.1.1</bootstrap.version>
+    <java.version>1.8</java.version>
+    <jquery.version>1.11.1</jquery.version>
+    <maven-sortpom-plugin.version>2.3.0</maven-sortpom-plugin.version>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>javax.inject</groupId>
+        <artifactId>javax.inject</artifactId>
+        <version>1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jadira.usertype</groupId>
+        <artifactId>usertype.core</artifactId>
+        <version>3.2.0.GA</version>
+      </dependency>
+      <dependency>
+        <groupId>org.joda</groupId>
+        <artifactId>joda-money</artifactId>
+        <version>0.9.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>angular-ui-bootstrap</artifactId>
+        <version>${angular-ui-bootstrap.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>angularjs</artifactId>
+            <groupId>org.webjars</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>bootstrap</artifactId>
+            <groupId>org.webjars</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>angularjs</artifactId>
+        <version>${angularjs.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>bootstrap</artifactId>
+        <version>${bootstrap.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>jquery</artifactId>
+            <groupId>org.webjars</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>jquery</artifactId>
+        <version>${jquery.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- Logging -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>http://repo.spring.io/milestone</url>
+    </repository>
+  </repositories>
+
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <!-- for integration tests -->
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>2.17</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>integration-test</goal>
+                <goal>verify</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
         <!-- Reporting -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -68,28 +167,9 @@
           </configuration>
         </plugin>
         <plugin>
-          <!-- for integration tests -->
-          <artifactId>maven-failsafe-plugin</artifactId>
-          <version>2.17</version>
-          <executions>
-            <execution>
-              <goals>
-                <goal>integration-test</goal>
-                <goal>verify</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
           <groupId>org.apache.tomcat.maven</groupId>
           <artifactId>tomcat7-maven-plugin</artifactId>
           <version>2.2</version>
-          <configuration>
-            <url>http://develvm:8080/manager/text</url>
-            <path>/${project.build.finalName}</path>
-            <username>tomcat</username>
-            <password>password</password>
-          </configuration>
           <dependencies>
             <dependency>
               <groupId>org.slf4j</groupId>
@@ -97,85 +177,37 @@
               <version>1.7.5</version>
             </dependency>
           </dependencies>
+          <configuration>
+            <url>http://develvm:8080/manager/text</url>
+            <path>/${project.build.finalName}</path>
+            <username>tomcat</username>
+            <password>password</password>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>com.google.code.sortpom</groupId>
+        <artifactId>maven-sortpom-plugin</artifactId>
+        <version>${maven-sortpom-plugin.version}</version>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+            <goals>
+              <goal>sort</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <sortProperties>true</sortProperties>
+          <nrOfIndentSpace>2</nrOfIndentSpace>
+          <sortDependencies>groupId,artifactId</sortDependencies>
+          <sortPlugins>groupId,artifactId</sortPlugins>
+          <keepBlankLines>true</keepBlankLines>
+          <expandEmptyElements>false</expandEmptyElements>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>javax.inject</groupId>
-        <artifactId>javax.inject</artifactId>
-        <version>1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.joda</groupId>
-        <artifactId>joda-money</artifactId>
-        <version>0.9.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jadira.usertype</groupId>
-        <artifactId>usertype.core</artifactId>
-        <version>3.2.0.GA</version>
-      </dependency>
-      <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>bootstrap</artifactId>
-        <version>${bootstrap.version}</version>
-        <exclusions>
-          <exclusion>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>jquery</artifactId>
-        <version>${jquery.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>angularjs</artifactId>
-        <version>${angularjs.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>angular-ui-bootstrap</artifactId>
-        <version>${angular-ui-bootstrap.version}</version>
-        <exclusions>
-          <exclusion>
-            <groupId>org.webjars</groupId>
-            <artifactId>angularjs</artifactId>
-          </exclusion>
-          <exclusion>
-            <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
-  <dependencies>
-    <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
-    </dependency>
-    <!-- Logging -->
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-    </dependency>
-  </dependencies>
 </project>
